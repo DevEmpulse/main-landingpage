@@ -1,0 +1,74 @@
+---
+import { Menu, X } from '@lucide/astro';
+---
+<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center space-x-2">
+        <img src="/src/assets/logo.svg" alt="Empulse Logo" width="40" height="40" class="w-10 h-10" />
+        <span class="text-2xl font-bold text-gray-900">Empulse</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <button data-scroll="home" class="text-gray-700 hover:text-pink-600 transition-colors font-medium">HOME</button>
+        <button data-scroll="servicios" class="text-gray-700 hover:text-pink-600 transition-colors font-medium">SERVICIOS</button>
+        <button data-scroll="proyectos" class="text-gray-700 hover:text-pink-600 transition-colors font-medium">PROYECTOS</button>
+        <button data-scroll="contacto" class="text-gray-700 hover:text-pink-600 transition-colors font-medium">CONTACTO</button>
+      </nav>
+
+      <!-- Mobile Toggle -->
+      <button id="menu-btn" class="md:hidden p-2">
+        <Menu id="icon-open" class="w-6 h-6 text-gray-700" />
+        <X id="icon-close" class="w-6 h-6 text-gray-700 hidden" />
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav id="mobile-nav" class="md:hidden mt-4 pb-4 border-t border-gray-100 hidden">
+      <div class="flex flex-col space-y-4 pt-4">
+        <button data-scroll="home" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">HOME</button>
+        <button data-scroll="servicios" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">SERVICIOS</button>
+        <button data-scroll="proyectos" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">PROYECTOS</button>
+        <button data-scroll="contacto" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">CONTACTO</button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Interactive Behavior -->
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('mobile-nav');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    const scrollButtons = document.querySelectorAll('button[data-scroll]');
+
+    if (btn && nav && iconOpen && iconClose) {
+      let menuOpen = false;
+
+      btn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        nav.classList.toggle('hidden', !menuOpen);
+        iconOpen.classList.toggle('hidden', menuOpen);
+        iconClose.classList.toggle('hidden', !menuOpen);
+      });
+
+      scrollButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-scroll');
+          if (target) {
+            const el = document.getElementById(target);
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+          menuOpen = false;
+          nav.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+</header>

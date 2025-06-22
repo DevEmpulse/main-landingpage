@@ -1,0 +1,63 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Logo and Description -->
+      <div class="md:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <img
+            src="/src/assets/logo.svg"
+            alt="Empulse Logo"
+            width="40"
+            height="40"
+            class="w-10 h-10 brightness-0 invert"
+          />
+          <span class="text-2xl font-bold">Empulse</span>
+        </div>
+        <p class="text-gray-300 leading-relaxed mb-6 max-w-md">
+          Transformamos tu negocio con soluciones tecnológicas innovadoras. Software a medida,
+          automatización y proyectos individuales para impulsar tu crecimiento.
+        </p>
+        <div class="flex space-x-4">
+          <a
+            href="https://wa.me/1234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors"
+          >
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Servicios</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Desarrollo de Software</a></li>
+          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Automatización</a></li>
+          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Proyectos Individuales</a></li>
+          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Integración de Sistemas</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contacto</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li>contacto@empulse.com</li>
+          <li>+1 (234) 567-8900</li>
+          <li>Lun - Vie: 9:00 - 18:00</li>
+          <li>Sáb: 9:00 - 14:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; {currentYear} Empulse. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

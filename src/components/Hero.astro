@@ -1,0 +1,79 @@
+---
+import { ChartColumn } from '@lucide/astro';
+const whatsappUrl = 'https://wa.me/1234567890?text=Hola,%20quiero%20automatizar%20mi%20negocio';
+const tealDots = Array.from({ length: 64 });
+const dotRows = Array.from({ length: 8 });
+---
+
+<section id="home" class="pt-20 pb-16 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+      <!-- Left Content -->
+      <div class="space-y-8">
+        <div class="space-y-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            Convertimos tus <span class="text-pink-600">tareas manuales</span> en
+            <span class="text-pink-600"> sistemas automáticos</span>
+          </h1>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            Software a medida para emprendedores y pymes que quieren ganar tiempo y escalar sin perder el control.
+          </p>
+        </div>
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 shadow-lg"
+        >
+          QUIERO AUTOMATIZAR MI NEGOCIO
+        </a>
+      </div>
+
+      <!-- Right Content - Visual Elements -->
+      <div class="relative">
+        <!-- Background Shapes -->
+        <div class="absolute inset-0">
+          <div class="absolute top-0 right-0 w-80 h-80 bg-pink-600 rounded-full opacity-90 transform translate-x-20 -translate-y-10"></div>
+          <div class="absolute bottom-20 left-0 w-40 h-20 bg-yellow-400 rounded-t-full transform -translate-x-10"></div>
+          <div class="absolute top-32 right-32 w-32 h-32 opacity-20 grid grid-cols-8 gap-1">
+            {tealDots.map(() => <div class="bg-teal-500 rounded-full"></div>)}
+          </div>
+          <div class="absolute top-10 left-20 space-y-2">
+            {dotRows.map(() => (
+              <div class="flex space-x-2">
+                {Array.from({ length: 12 }).map(() => <div class="w-1 h-1 bg-blue-400 rounded-full opacity-60"></div>)}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Main Image -->
+        <div class="relative z-10 flex justify-center">
+          <img
+            alt="Professional woman with tablet"
+            width="300"
+            height="400"
+            class="rounded-lg shadow-2xl"
+          />
+
+          <!-- Chart Element -->
+          <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-4 border">
+            <div class="flex items-center space-x-2 mb-2">
+              <ChartColumn class="w-5 h-5 text-blue-600" />
+              <span class="text-sm font-semibold text-gray-700">Crecimiento</span>
+            </div>
+            <div class="flex items-end space-x-1 h-16">
+              {[30, 45, 60, 80, 100].map((h) => (
+                <div
+                  class="w-3 rounded-t bg-blue-500"
+                  style={`height: ${h}%`}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

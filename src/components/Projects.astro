@@ -1,0 +1,114 @@
+---
+import { ExternalLink, Calendar } from '@lucide/astro';
+
+const projects = [
+  {
+    title: "Sistema de Gestión Empresarial",
+    description: "Plataforma completa para gestión de inventarios, ventas y clientes para empresa retail.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Software Empresarial",
+    date: "2024",
+    technologies: ["React", "Node.js", "PostgreSQL"],
+  },
+  {
+    title: "Automatización de Marketing",
+    description: "Sistema de automatización de campañas de email marketing y seguimiento de leads.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Automatización",
+    date: "2024",
+    technologies: ["Python", "API Integration", "CRM"],
+  },
+  {
+    title: "App Móvil de Delivery",
+    description: "Aplicación móvil para pedidos y delivery con sistema de tracking en tiempo real.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Aplicación Móvil",
+    date: "2023",
+    technologies: ["React Native", "Firebase", "Maps API"],
+  },
+  {
+    title: "Dashboard Analítico",
+    description: "Panel de control con métricas en tiempo real y reportes automatizados para toma de decisiones.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Business Intelligence",
+    date: "2023",
+    technologies: ["Vue.js", "D3.js", "MongoDB"],
+  },
+];
+
+const whatsappUrl = "https://wa.me/1234567890?text=Hola,%20me%20gustaría%20discutir%20un%20proyecto%20similar";
+---
+
+<section id="proyectos" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Nuestros <span class="text-pink-600">Proyectos</span>
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Conoce algunos de los proyectos que hemos desarrollado para nuestros clientes y proyectos propios
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      {projects.map((project) => (
+        <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+        >
+          <div class="relative h-48 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            />
+            <span class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+              {project.category}
+            </span>
+          </div>
+
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xl font-bold text-gray-900">{project.title}</h3>
+              <div class="flex items-center text-gray-500 text-sm">
+                <Calendar class="w-4 h-4 mr-1" />
+                {project.date}
+              </div>
+            </div>
+
+            <p class="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.technologies.map((tech) => (
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center text-pink-600 hover:text-pink-700 font-medium transition-colors"
+            >
+              Proyecto Similar
+              <ExternalLink class="w-4 h-4 ml-2" />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 shadow-lg"
+      >
+        DISCUTIR MI PROYECTO
+      </a>
+    </div>
+  </div>
+</section>
