@@ -1,10 +1,35 @@
 ---
 import { Phone, Mail, MapPin, Clock } from '@lucide/astro';
 const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios';
-import ContactFormClient from './ContactFormClient.tsx'
+import ContactFormClient from './ContactFormClient.tsx';
+const whatsapp = '+54 3841 453879';
+const email = 'empulse.dev@gmail.com';
 ---
 
 <section id="contacto" class="py-20 bg-white">
+  <!-- JSON-LD de ContactPoint para SEO -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Empulse",
+      "url": "https://empulse.site",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": whatsapp.replace(/\D/g, ''),
+          "contactType": "sales",
+          "areaServed": "AR",
+          "availableLanguage": ["es", "en"]
+        },
+        {
+          "@type": "ContactPoint",
+          "email": email,
+          "contactType": "customer service"
+        }
+      ]
+    })}
+  </script>
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -39,7 +64,7 @@ import ContactFormClient from './ContactFormClient.tsx'
             </div>
             <div>
               <h4 class="font-semibold text-gray-900">Email</h4>
-              <p class="text-gray-600">empulse.dev@gmail.com</p>
+              <p class="text-gray-600">{email}</p>
             </div>
           </div>
 

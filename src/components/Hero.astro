@@ -50,18 +50,21 @@ const dotRows = Array.from({ length: 8 });
 
         <!-- Main Image -->
         <div class="relative z-10 flex justify-center">
-          <img
-            src="/placeholder.png"
-            alt="Hombre relajado sentado en una silla de escritorio"
-            width="500"
-            height="600"
-            class="rounded-lg shadow-2xl"
-          />
+            <source srcset="/placeholder.avif" type="image/avif" />
+            <source srcset="/placeholder.webp" type="image/webp" />
+            <img
+              src="/placeholder.png"
+              alt="Hombre relajado sentado en una silla de escritorio"
+              width="500"
+              height="600"
+              class="rounded-lg shadow-2xl"
+              decoding="async"
+            />
 
           <!-- Chart Element -->
           <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-4 border">
             <div class="flex items-center space-x-2 mb-2">
-              <ChartColumn class="w-5 h-5 text-blue-600" />
+              <ChartColumn />
               <span class="text-sm font-semibold text-gray-700">Crecimiento</span>
             </div>
             <div class="flex items-end space-x-1 h-16">

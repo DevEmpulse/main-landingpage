@@ -1,20 +1,87 @@
 ---  
-import '../styles/global.css';
+import '/src/styles/global.css';  
 import Header from '../components/Header.astro';  
 import Footer from '../components/Footer.astro';  
 import WhatsAppButton from '../components/WhatsAppButton.astro';  
-const { title = 'Empulse' } = Astro.props;  
+const { title = 'Empulse', description = 'Empulse - Tu aliado en la gestión de proyectos y tareas.', url = 'https://empulse.site' } = Astro.props;  
 ---  
 
 <html lang="es">  
   <head>  
-    <meta charset="UTF-8" />
-    <meta name="description" content="Empulse - Tu aliado en la gestión de proyectos y tareas." />
-    <meta name="keywords" content="gestión de proyectos, tareas, productividad, organización" />
-    <meta name="author" content="Empulse Team" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+    <meta charset="UTF-8" />  
+    <!-- SEO básico -->
     <title>{title}</title>  
+    <meta name="description" content={description} />  
+    <meta name="keywords" content="gestión de proyectos, tareas, productividad, organización" />  
+    <meta name="author" content="Empulse Team" />  
+    <meta name="robots" content="index, follow" />  
+
+    <!-- Responsive y seguridad -->  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+    <link rel="canonical" href={url + new URL(Astro.request.url).pathname} />  
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />  
+
+    <!-- Open Graph (Facebook, LinkedIn…) -->  
+    <meta property="og:type" content="website" />  
+    <meta property="og:title" content={title} />  
+    <meta property="og:description" content={description} />  
+    <meta property="og:url" content={url + new URL(Astro.request.url).pathname} />  
+    <meta property="og:image" content={`${url}/social-preview.png`} />  
+
+    <!-- Twitter Card -->  
+    <meta name="twitter:card" content="summary_large_image" />  
+    <meta name="twitter:title" content={title} />  
+    <meta name="twitter:description" content={description} />  
+    <meta name="twitter:image" content={`${url}/social-preview.png`} />  
+
+    <!-- Preload recursos críticos -->  
+    <link rel="preload" href="/src/styles/global.css" as="style" />  
+    <link rel="preload" href="/logo.svg" as="image" />  
+
+    <!-- JSON-LD de organización -->  
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": title,
+        "url": url,
+        "logo": `${url}/logo.svg`,
+        "sameAs": [
+          "https://www.instagram.com/empulse.site"
+        ]
+      })}
+    </script>  
+
+    <!-- JSON-LD WebSite y BreadcrumbList -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "url": url,
+            "name": title,
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": `${url}/?s={search_term_string}`,
+              "query-input": "required name=search_term_string"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": url },
+              { "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${url}#servicios` },
+              { "@type": "ListItem", "position": 3, "name": "Proyectos", "item": `${url}#proyectos` },
+              { "@type": "ListItem", "position": 4, "name": "Contacto", "item": `${url}#contacto` }
+            ]
+          }
+        ]
+      })}
+    </script>  
+
+    <!-- Carga de CSS principal -->  
+    <link rel="stylesheet" href="src/styles/global.css" />  
   </head>  
   <body class="bg-white text-gray-900">  
     <Header />  
@@ -23,5 +90,5 @@ const { title = 'Empulse' } = Astro.props;
     </main>  
     <Footer />  
     <WhatsAppButton />  
-  </body>  
+  </body> 
 </html>
