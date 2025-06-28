@@ -32,10 +32,26 @@ const services = [
   },
 ];
 
-const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios';
+const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios';
 ---
 
 <section id="servicios" class="py-20 bg-white">
+  <!-- JSON-LD datos estructurados de servicios -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": services.map(s => ({
+        "@type": "Service",
+        "name": s.title,
+        "description": s.description,
+        "provider": {
+          "@type": "Organization",
+          "name": "Empulse",
+          "url": "https://empulse.site"
+        }
+      }))
+    })}
+  </script>
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
