@@ -10,28 +10,36 @@ const projects = [
     date: "2025",
     technologies: ["React", "TypeScript", "Tailwind", "IndexedDB"],
   },
+  {
+    title: "Reamser S.A.S.",
+    description: "Landing page para sociedad encargada de la sanidad ambiental y el control de plagas en el N.E.A.",
+    image: "/Ramser.png?height=300&width=400",
+    category: "Landing Page",
+    date: "2024",
+    technologies: ["Astro", "JavaScript", "Tailwind CSS"],
+  },/*
+  {
+    title: "App Móvil de Delivery",
+    description: "Aplicación móvil para pedidos y delivery con sistema de tracking en tiempo real.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Aplicación Móvil",
+    date: "2023",
+    technologies: ["React Native", "Firebase", "Maps API"],
+  },
+  {
+    title: "Dashboard Analítico",
+    description: "Panel de control con métricas en tiempo real y reportes automatizados para toma de decisiones.",
+    image: "/placeholder.svg?height=300&width=400",
+    category: "Business Intelligence",
+    date: "2023",
+    technologies: ["Vue.js", "D3.js", "MongoDB"],
+  },*/
 ];
 
-const whatsappUrl = "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios";
+const whatsappUrl = "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios";
 ---
 
 <section id="proyectos" class="py-20 bg-gray-50">
-  <!-- JSON-LD datos estructurados de proyectos -->
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": projects.map((project) => ({
-        "@type": "CreativeWork",
-        "name": project.title,
-        "description": project.description,
-        "dateCreated": project.date,
-        "about": project.category,
-        "thumbnailUrl": `https://empulse.site${project.image.split('?')[0]}`,
-        "keywords": project.technologies.join(', ')
-      }))
-    })}
-  </script>
-
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -48,14 +56,12 @@ const whatsappUrl = "https://wa.me/543841453879?text=Hola,%20me%20interesa%20con
           class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
         >
           <div class="relative h-48 overflow-hidden">
-              <source srcset={project.image.replace('.jpg', '.webp')} type="image/webp" />
-              <img
-                src={project.image}
-                alt={project.title}
-                loading="lazy"
-                decoding="async"
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-              />
+            <img
+              src={project.image}
+              alt={project.title}
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+            />
             <span class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium">
               {project.category}
             </span>
