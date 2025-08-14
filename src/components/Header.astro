@@ -1,74 +1,200 @@
 ---
-import { Menu, X } from '@lucide/astro';
+import { Menu, X } from "@lucide/astro";
+const whatsappUrl =
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios";
 ---
-<header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
-  <div class="container mx-auto px-4 py-4">
-    <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#home" class="flex items-center space-x-2">
-        <img src="/logo.svg" alt="Empulse Logo" width="40" height="40" class="w-10 h-10" />
-        <span class="text-2xl font-bold text-gray-900">Empulse</span>
-      </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center space-x-8">
-        <button data-scroll="home" class="text-gray-700 hover:text-pink-600 transition-colors font-medium cursor-pointer">HOME</button>
-        <button data-scroll="servicios" class="text-gray-700 hover:text-pink-600 transition-colors font-medium cursor-pointer">SERVICIOS</button>
-        <button data-scroll="proyectos" class="text-gray-700 hover:text-pink-600 transition-colors font-medium cursor-pointer">PROYECTOS</button>
-        <button data-scroll="contacto" class="text-gray-700 hover:text-pink-600 transition-colors font-medium cursor-pointer">CONTACTO</button>
-      </nav>
+<header
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-7xl transition-all duration-300"
+>
+  <div
+    id="header-shell"
+    class="backdrop-blur-sm shadow-lg bg-white/90 rounded-2xl md:rounded-full border border-white/60 transition-all duration-300"
+  >
+    <div id="header-inner" class="px-4 md:px-6 py-3 md:py-4 transition-all duration-300">
+      <div class="flex items-center justify-between gap-3">
+        <!-- Brand -->
+        <a href="#home" class="flex items-center gap-2 min-w-0 transition-all duration-300">
+          <img
+            id="brand-logo"
+            src="/logo.svg"
+            alt="Empulse Logo"
+            width="40"
+            height="40"
+            class="w-9 h-9 md:w-10 md:h-10 shrink-0 transition-all duration-300 hover:scale-105"
+          />
+          <span
+            id="brand-text"
+            class="text-xl md:text-2xl font-bold text-gray-900 whitespace-nowrap transition-all duration-300"
+          >
+            Empulse
+          </span>
+        </a>
 
-      <!-- Mobile Toggle -->
-      <button id="menu-btn" class="md:hidden p-2">
-        <Menu id="icon-open" class="w-6 h-6 text-gray-700" />
-        <X id="icon-close" class="w-6 h-6 text-gray-700 hidden" />
-      </button>
-    </div>
+                 <!-- Desktop Nav -->
+         <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+           <button data-scroll="home" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">HOME</button>
+           <button data-scroll="servicios" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">SERVICIOS</button>
+           <button data-scroll="proyectos" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">PROYECTOS</button>
+           <button data-scroll="contacto" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">CONTACTO</button>
+         </nav>
 
-    <!-- Mobile Nav -->
-    <nav id="mobile-nav" class="md:hidden mt-4 pb-4 border-t border-gray-100 hidden">
-      <div class="flex flex-col space-y-4 pt-4">
-        <button data-scroll="home" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">HOME</button>
-        <button data-scroll="servicios" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">SERVICIOS</button>
-        <button data-scroll="proyectos" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">PROYECTOS</button>
-        <button data-scroll="contacto" class="text-left text-gray-700 hover:text-pink-600 transition-colors font-medium">CONTACTO</button>
+                 <!-- Desktop CTA -->
+         <a
+           href={whatsappUrl}
+           target="_blank"
+           rel="noopener noreferrer"
+           class="hidden md:inline-flex items-center gap-2 bg-black text-white font-semibold py-2 px-4 rounded-full text-md lg:text-md transition-all duration-300 hover:scale-105 shadow-lg group"
+         >
+           <span>Contáctanos</span>
+           <svg 
+             class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" 
+             fill="none" 
+             stroke="currentColor" 
+             viewBox="0 0 24 24"
+           >
+             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+           </svg>
+         </a>
+
+        <!-- Mobile Toggle -->
+        <button
+          id="menu-btn"
+          class="md:hidden p-2 rounded-lg border border-gray-200"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <Menu id="icon-open" class="w-6 h-6 text-gray-700" />
+          <X id="icon-close" class="w-6 h-6 text-gray-700 hidden" />
+        </button>
       </div>
-    </nav>
+
+      <!-- Mobile Nav -->
+      <nav
+        id="mobile-nav"
+        class="md:hidden mt-3 pt-3 border-t border-gray-100 hidden"
+      >
+                 <div class="flex flex-col gap-3">
+           <button data-scroll="home" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">HOME</button>
+           <button data-scroll="servicios" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">SERVICIOS</button>
+           <button data-scroll="proyectos" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">PROYECTOS</button>
+           <button data-scroll="contacto" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">CONTACTO</button>
+
+                     <a
+             href={whatsappUrl}
+             target="_blank"
+             rel="noopener noreferrer"
+             class="mt-2 inline-flex items-center gap-2 justify-center bg-black text-white font-semibold py-2.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-md group"
+           >
+             <span>Contactanos</span>
+             <svg 
+               class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" 
+               fill="none" 
+               stroke="currentColor" 
+               viewBox="0 0 24 24"
+             >
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+             </svg>
+           </a>
+        </div>
+      </nav>
+    </div>
   </div>
 
-  <!-- Interactive Behavior -->
-  <script>
-    const btn = document.getElementById('menu-btn');
-    const nav = document.getElementById('mobile-nav');
-    const iconOpen = document.getElementById('icon-open');
-    const iconClose = document.getElementById('icon-close');
-    const scrollButtons = document.querySelectorAll('button[data-scroll]');
+  
 
+  <script>
+    const root = document;
+    const btn = root.getElementById("menu-btn");
+    const nav = root.getElementById("mobile-nav");
+    const iconOpen = root.getElementById("icon-open");
+    const iconClose = root.getElementById("icon-close");
+    const brandText = root.getElementById("brand-text");
+    const brandLogo = root.getElementById("brand-logo");
+    const headerShell = root.getElementById("header-shell");
+    const headerInner = root.getElementById("header-inner");
+    const scrollButtons = root.querySelectorAll("button[data-scroll]");
+
+    // Mobile toggle menu
     if (btn && nav && iconOpen && iconClose) {
       let menuOpen = false;
+             const setState = (open: boolean) => {
+        menuOpen = open;
+        nav.classList.toggle("hidden", !open);
+        iconOpen.classList.toggle("hidden", open);
+        iconClose.classList.toggle("hidden", !open);
+        btn.setAttribute("aria-expanded", String(open));
+      };
 
-      btn.addEventListener('click', () => {
-        menuOpen = !menuOpen;
-        nav.classList.toggle('hidden', !menuOpen);
-        iconOpen.classList.toggle('hidden', menuOpen);
-        iconClose.classList.toggle('hidden', !menuOpen);
-      });
+      btn.addEventListener("click", () => setState(!menuOpen));
 
       scrollButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const target = button.getAttribute('data-scroll');
+        button.addEventListener("click", () => {
+          const target = button.getAttribute("data-scroll");
           if (target) {
-            const el = document.getElementById(target);
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth' });
-            }
+            const el = root.getElementById(target);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
           }
-          menuOpen = false;
-          nav.classList.add('hidden');
-          iconOpen.classList.remove('hidden');
-          iconClose.classList.add('hidden');
+          setState(false);
         });
       });
     }
+
+    // Scroll effect
+    let lastY = 0;
+    const THRESHOLD = 8;
+
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
+             if (isDesktop && brandText && brandLogo && headerInner && headerShell) {
+         if (y > THRESHOLD && y > lastY) {
+           // Shrink header
+           brandText.style.maxWidth = "0px";
+           brandText.style.opacity = "0";
+           brandText.classList.add("pointer-events-none");
+
+           brandLogo.style.width = "32px";
+           brandLogo.style.height = "32px";
+
+           headerInner.style.paddingTop = "0.4rem";
+           headerInner.style.paddingBottom = "0.4rem";
+           headerShell.style.transform = "scale(0.9)";
+         } else if (y <= THRESHOLD || y < lastY) {
+           // Restore header
+           brandText.style.maxWidth = "500px";
+           brandText.style.opacity = "1";
+           brandText.classList.remove("pointer-events-none");
+
+           brandLogo.style.width = "";
+           brandLogo.style.height = "";
+
+           headerInner.style.paddingTop = "";
+           headerInner.style.paddingBottom = "";
+           headerShell.style.transform = "scale(1)";
+         }
+       }
+      lastY = y;
+    };
+
+    if (brandText) {
+      brandText.style.transition = "max-width 250ms ease, opacity 200ms ease";
+      brandText.style.overflow = "hidden";
+      brandText.style.display = "inline-block";
+    }
+    if (brandLogo) {
+      brandLogo.style.transition = "all 250ms ease";
+    }
+    if (headerInner) {
+      headerInner.style.transition = "padding 250ms ease";
+    }
+    if (headerShell) {
+      headerShell.style.transition = "transform 250ms ease";
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   </script>
 </header>
