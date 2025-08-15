@@ -1,83 +1,121 @@
 ---
-import { ChartColumn } from '@lucide/astro';
-const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios';
-const tealDots = Array.from({ length: 64 });
-const dotRows = Array.from({ length: 8 });
+import LogoDots from "../components/LogoDots.astro";
+const whatsappUrl =
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios";
 ---
 
-<section id="home" class="pt-20 pb-16 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
-  <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-      <!-- Left Content -->
-      <div class="space-y-8">
-        <div class="space-y-6">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Convertimos tus <span class="text-pink-600">tareas manuales</span> en
-            <span class="text-pink-600"> sistemas automáticos</span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Software a medida para emprendedores y pymes que quieren ganar tiempo y escalar sin perder el control.
-          </p>
-        </div>
+<section
+  id="home"
+  class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden"
+>
+  {/* Marco sutil */}
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"
+  >
+  </div>
 
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 shadow-lg"
-        >
-          QUIERO AUTOMATIZAR MI NEGOCIO
-        </a>
+  {/* Fondo con logo de puntos (atrás y más chico) */}
+  <div
+    class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+  >
+    <div
+      class="relative w-[56vw] max-w-[520px] md:w-[52vw] md:max-w-[520px] aspect-[4/5]"
+    >
+      <div class="absolute inset-0 opacity-70 blur-[0.5px]">
+        <LogoDots src="/logo.svg" density={8} starChance={0.002} />
       </div>
-
-      <!-- Right Content - Visual Elements -->
-      <div class="relative">
-        <!-- Background Shapes -->
-        <div class="absolute inset-0">
-          <div class="absolute top-0 right-0 w-80 h-80 bg-pink-600 rounded-full opacity-90 transform translate-x-20 -translate-y-10"></div>
-          <div class="absolute bottom-20 left-0 w-40 h-20 bg-yellow-400 rounded-t-full transform -translate-x-10"></div>
-          <div class="absolute top-32 right-32 w-32 h-32 opacity-20 grid grid-cols-8 gap-1">
-            {tealDots.map(() => <div class="bg-teal-500 rounded-full"></div>)}
-          </div>
-          <div class="absolute top-10 left-20 space-y-2">
-            {dotRows.map(() => (
-              <div class="flex space-x-2">
-                {Array.from({ length: 12 }).map(() => <div class="w-1 h-1 bg-blue-400 rounded-full opacity-60"></div>)}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Main Image -->
-        <div class="relative z-10 flex justify-center">
-            <source srcset="/placeholder.avif" type="image/avif" />
-            <source srcset="/placeholder.webp" type="image/webp" />
-            <img
-              src="/placeholder.png"
-              alt="Hombre relajado sentado en una silla de escritorio"
-              width="500"
-              height="600"
-              class="rounded-lg shadow-2xl"
-              decoding="async"
-            />
-
-          <!-- Chart Element -->
-          <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-4 border">
-            <div class="flex items-center space-x-2 mb-2">
-              <ChartColumn />
-              <span class="text-sm font-semibold text-gray-700">Crecimiento</span>
-            </div>
-            <div class="flex items-end space-x-1 h-16">
-              {[30, 45, 60, 80, 100].map((h) => (
-                <div
-                  class="w-3 rounded-t bg-blue-500"
-                  style={`height: ${h}%`}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)]"
+      >
       </div>
     </div>
   </div>
+
+  {/* Contenido en grid de 12 para posicionar como la referencia */}
+  <div class="container mx-4 lg:mx-0 lg:px-20 relative z-10">
+    <div class="grid grid-cols-12 gap-x-14 gap-y-10 lg:gap-x-0">
+      {/* IZQUIERDA: arriba */}
+      <div
+        class="col-span-12 lg:col-span-6 xl:col-span-5 pt-16 md:pt-24 lg:pt-24"
+      >
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight"
+        >
+          Diseñamos y desarrollamos <span class="text-pink-600"
+            >soluciones IT</span
+          > a medida
+        </h1>
+        <p
+          class="mt-5 text-base sm:text-lg md:text-xl text-gray-300 max-w-[46ch]"
+        >
+          Para empresas que quieren crecer, digitalizarse y optimizar su
+          operación
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* DERECHA: completamente pegado al borde derecho y abajo */}
+  <div class="absolute right-0 bottom-0 pb-20 pr-20 z-20">
+    <p class="text-sm sm:text-base text-gray-300 pl-10 mb-6 text-right">
+      Páginas web profesionales, software a medida,<br>
+      automatización de procesos y soporte<br>
+      especializado
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full justify-end">
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-pink-600 hover:bg-pink-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] inline-flex items-center justify-center gap-2 group shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset]"
+      >
+        <span>Comencemos</span>
+        <svg
+          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M7 17l9.2-9.2M17 17V7H7"></path>
+        </svg>
+      </a>
+
+      <a
+        href="#proyectos"
+        class="border-2 border-white/80 text-white hover:bg-white hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+      >
+        <span>Ver Nuestros Proyectos</span>
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
+
+{/* Indicador scroll */}
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block">
+  <div
+    class="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center"
+  >
+    <div class="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
+  </div>
+</div>
