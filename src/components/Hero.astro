@@ -9,74 +9,55 @@ const whatsappUrl =
   class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden snap-section"
 >
   {/* Marco sutil */}
-  <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"
-  >
-  </div>
-  <div
-    class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"
-  >
-  </div>
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
 
-  {/* Fondo con logo de puntos (atrás y más chico) */}
-  <div
-    class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
-  >
-    <div
-      class="relative w-[56vw] max-w-[520px] md:w-[52vw] md:max-w-[520px] aspect-[4/5]"
-    >
+  {/* Fondo con logo de puntos */}
+  <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+    <div class="relative w-[80vw] max-w-[520px] sm:w-[56vw] sm:max-w-[520px] aspect-[4/5]">
       <div class="absolute inset-0 opacity-70 blur-[0.5px]">
         <LogoDots src="/logo.svg" density={8} starChance={0.002} />
       </div>
-      <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)]"
-      >
-      </div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)]"></div>
     </div>
   </div>
 
-  {/* Contenido en grid de 12 para posicionar como la referencia */}
-  <div class="container mx-4 lg:mx-0 lg:px-20 relative z-10">
-    <div class="grid grid-cols-12 gap-x-14 gap-y-10 lg:gap-x-0">
-      {/* IZQUIERDA: arriba */}
-      <div
-        class="col-span-12 lg:col-span-6 xl:col-span-5 pt-16 md:pt-24 lg:pt-24"
-      >
-        <h1
-          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight font-monserrat"
-        >
-          Diseñamos y desarrollamos <span class="text-pink-600"
-            >soluciones IT</span
-          > a medida
-        </h1>
-        <p
-          class="mt-5 text-base sm:text-lg md:text-xl text-gray-300 max-w-[46ch] font-opensans"
-        >
-          Para empresas que quieren crecer, digitalizarse y optimizar su
-          operación
-        </p>
-      </div>
+{/* Contenido */}
+<div class="container px-4 sm:px-6 lg:px-20 relative z-10 mt-20 sm:mt-28 lg:mt-36">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-0">
+    {/* IZQUIERDA */}
+    <div class="col-span-12 lg:col-span-6 xl:col-span-5">
+      <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight font-montserrat">
+        Diseñamos y desarrollamos
+        <span class="text-pink-600"> soluciones IT</span> a medida
+      </h1>
+      <p class="mt-4 sm:mt-5 text-ls sm:text-lg md:text-xl text-gray-300 max-w-[46ch] font-opensans">
+        Para empresas que quieren crecer, digitalizarse y optimizar su
+        operación
+      </p>
     </div>
   </div>
+</div>
 
-  {/* DERECHA: completamente pegado al borde derecho y abajo */}
-  <div class="absolute right-0 bottom-0 pb-20 pr-20 z-20">
-    <p class="text-sm sm:text-base text-gray-300 pl-10 mb-6 text-right font-opensans">
-      Páginas web profesionales, software a medida,<br>
-      automatización de procesos y soporte<br>
+
+  {/* DERECHA */}
+  <div class="absolute right-4 bottom-6 sm:right-10 sm:bottom-10 lg:right-20 lg:bottom-20 z-20 text-right">
+    <p class="text-ls sm:text-lg md:text-base text-gray-300 mb-4 sm:mb-6 font-opensans leading-relaxed">
+      Páginas web profesionales, software a medida,<br class="hidden sm:block">
+      automatización de procesos y soporte<br class="hidden sm:block">
       especializado
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full justify-end">
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end items-end sm:items-center">
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-pink-600 hover:bg-pink-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] inline-flex items-center justify-center gap-2 group shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset]"
+        class="bg-pink-600 hover:bg-pink-700 text-white px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] inline-flex items-center justify-center gap-2 group shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset]"
       >
         <span>Comencemos</span>
         <svg
-          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+          class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -85,17 +66,18 @@ const whatsappUrl =
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M7 17l9.2-9.2M17 17V7H7"></path>
+            d="M7 17l9.2-9.2M17 17V7H7"
+          />
         </svg>
       </a>
 
       <a
         href="#proyectos"
-        class="border-2 border-white/80 text-white hover:bg-white hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+        class="border-2 border-white/80 text-white hover:bg-white hover:text-black px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
       >
         <span>Ver Nuestros Proyectos</span>
         <svg
-          class="w-5 h-5"
+          class="w-4 h-4 sm:w-5 sm:h-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -104,7 +86,8 @@ const whatsappUrl =
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
+            d="M9 5l7 7-7 7"
+          />
         </svg>
       </a>
     </div>
@@ -113,12 +96,11 @@ const whatsappUrl =
 
 {/* Indicador scroll */}
 <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block">
-  <div
-    class="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center"
-  >
+  <div class="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center">
     <div class="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
   </div>
 </div>
+
 
 <script>
 
