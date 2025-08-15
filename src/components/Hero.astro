@@ -6,7 +6,7 @@ const whatsappUrl =
 
 <section
   id="home"
-  class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden"
+  class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden snap-section"
 >
   {/* Marco sutil */}
   <div
@@ -43,14 +43,14 @@ const whatsappUrl =
         class="col-span-12 lg:col-span-6 xl:col-span-5 pt-16 md:pt-24 lg:pt-24"
       >
         <h1
-          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight"
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight font-monserrat"
         >
           Diseñamos y desarrollamos <span class="text-pink-600"
             >soluciones IT</span
           > a medida
         </h1>
         <p
-          class="mt-5 text-base sm:text-lg md:text-xl text-gray-300 max-w-[46ch]"
+          class="mt-5 text-base sm:text-lg md:text-xl text-gray-300 max-w-[46ch] font-opensans"
         >
           Para empresas que quieren crecer, digitalizarse y optimizar su
           operación
@@ -61,7 +61,7 @@ const whatsappUrl =
 
   {/* DERECHA: completamente pegado al borde derecho y abajo */}
   <div class="absolute right-0 bottom-0 pb-20 pr-20 z-20">
-    <p class="text-sm sm:text-base text-gray-300 pl-10 mb-6 text-right">
+    <p class="text-sm sm:text-base text-gray-300 pl-10 mb-6 text-right font-opensans">
       Páginas web profesionales, software a medida,<br>
       automatización de procesos y soporte<br>
       especializado
@@ -119,3 +119,10 @@ const whatsappUrl =
     <div class="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
   </div>
 </div>
+
+<script>
+
+
+  import "../scripts/gsapScroll";
+
+</script>
