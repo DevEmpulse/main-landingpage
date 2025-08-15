@@ -11,7 +11,7 @@ const whatsappUrl =
     id="header-shell"
     class="backdrop-blur-sm shadow-lg bg-white/90 rounded-2xl md:rounded-full border border-white/60 transition-all duration-300"
   >
-    <div id="header-inner" class="px-4 md:px-6 py-3 md:py-4 transition-all duration-300">
+    <div id="header-inner" class="px-2 md:px-3 py-1 md:py-2 transition-all duration-300">
       <div class="flex items-center justify-between gap-3">
         <!-- Brand -->
         <a href="#home" class="flex items-center gap-2 min-w-0 transition-all duration-300">
@@ -152,9 +152,7 @@ const whatsappUrl =
              if (isDesktop && brandText && brandLogo && headerInner && headerShell) {
          if (y > THRESHOLD && y > lastY) {
            // Shrink header
-           brandText.style.maxWidth = "0px";
-           brandText.style.opacity = "0";
-           brandText.classList.add("pointer-events-none");
+      
 
            brandLogo.style.width = "32px";
            brandLogo.style.height = "32px";
@@ -164,9 +162,7 @@ const whatsappUrl =
            headerShell.style.transform = "scale(0.9)";
          } else if (y <= THRESHOLD || y < lastY) {
            // Restore header
-           brandText.style.maxWidth = "500px";
-           brandText.style.opacity = "1";
-           brandText.classList.remove("pointer-events-none");
+      
 
            brandLogo.style.width = "";
            brandLogo.style.height = "";
@@ -179,11 +175,6 @@ const whatsappUrl =
       lastY = y;
     };
 
-    if (brandText) {
-      brandText.style.transition = "max-width 250ms ease, opacity 200ms ease";
-      brandText.style.overflow = "hidden";
-      brandText.style.display = "inline-block";
-    }
     if (brandLogo) {
       brandLogo.style.transition = "all 250ms ease";
     }

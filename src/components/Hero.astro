@@ -1,83 +1,102 @@
 ---
-import { ChartColumn } from '@lucide/astro';
-const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios';
-const tealDots = Array.from({ length: 64 });
-const dotRows = Array.from({ length: 8 });
+import ParticlesBackground from './ParticlesBackground.astro';
+
+const whatsappUrl =
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios";
 ---
 
-<section id="home" class="pt-20 pb-16 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
-  <div class="container mx-auto px-4">
-    <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-      <!-- Left Content -->
-      <div class="space-y-8">
-        <div class="space-y-6">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Convertimos tus <span class="text-pink-600">tareas manuales</span> en
-            <span class="text-pink-600"> sistemas automáticos</span>
-          </h1>
-          <p class="text-xl text-gray-600 leading-relaxed">
-            Software a medida para emprendedores y pymes que quieren ganar tiempo y escalar sin perder el control.
-          </p>
-        </div>
 
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 shadow-lg"
+
+
+<section
+  id="home"
+  class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-900 overflow-hidden"
+>
+   
+    <div
+      class="container mx-auto px-6 sm:px-8 text-center text-white relative z-10"
+    >
+    <ParticlesBackground/>
+      <div class="max-w-4xl mx-auto">
+        {/* Main Title */}
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
         >
-          QUIERO AUTOMATIZAR MI NEGOCIO
-        </a>
-      </div>
+          Diseñamos y desarrollamos <span class="text-pink-600"
+            >soluciones IT</span
+          > a medida
+        </h1>
 
-      <!-- Right Content - Visual Elements -->
-      <div class="relative">
-        <!-- Background Shapes -->
-        <div class="absolute inset-0">
-          <div class="absolute top-0 right-0 w-80 h-80 bg-pink-600 rounded-full opacity-90 transform translate-x-20 -translate-y-10"></div>
-          <div class="absolute bottom-20 left-0 w-40 h-20 bg-yellow-400 rounded-t-full transform -translate-x-10"></div>
-          <div class="absolute top-32 right-32 w-32 h-32 opacity-20 grid grid-cols-8 gap-1">
-            {tealDots.map(() => <div class="bg-teal-500 rounded-full"></div>)}
-          </div>
-          <div class="absolute top-10 left-20 space-y-2">
-            {dotRows.map(() => (
-              <div class="flex space-x-2">
-                {Array.from({ length: 12 }).map(() => <div class="w-1 h-1 bg-blue-400 rounded-full opacity-60"></div>)}
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Subtitle */}
+        <p
+          class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed px-2"
+        >
+          Para empresas que quieren crecer, digitalizarse y optimizar su
+          operación
+        </p>
 
-        <!-- Main Image -->
-        <div class="relative z-10 flex justify-center">
-            <source srcset="/placeholder.avif" type="image/avif" />
-            <source srcset="/placeholder.webp" type="image/webp" />
-            <img
-              src="/placeholder.png"
-              alt="Hombre relajado sentado en una silla de escritorio"
-              width="500"
-              height="600"
-              class="rounded-lg shadow-2xl"
-              decoding="async"
-            />
+        {/* Services Description */}
+        <p
+          class="text-base sm:text-lg md:text-xl mb-8 sm:mb-12 text-gray-300 max-w-2xl mx-auto px-4"
+        >
+          Páginas web profesionales, software a medida, automatización de
+          procesos y soporte especializado
+        </p>
 
-          <!-- Chart Element -->
-          <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-4 border">
-            <div class="flex items-center space-x-2 mb-2">
-              <ChartColumn />
-              <span class="text-sm font-semibold text-gray-700">Crecimiento</span>
-            </div>
-            <div class="flex items-end space-x-1 h-16">
-              {[30, 45, 60, 80, 100].map((h) => (
-                <div
-                  class="w-3 rounded-t bg-blue-500"
-                  style={`height: ${h}%`}
-                ></div>
-              ))}
-            </div>
-          </div>
+        {/* CTA Buttons */}
+        <div
+          class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4"
+        >
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto bg-pink-600 hover:bg-pink-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 group"
+          >
+            <span>Solicitar Consulta Gratuita</span>
+            <svg
+              class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 17l9.2-9.2M17 17V7H7"></path>
+            </svg>
+          </a>
+          <a
+            href="#proyectos"
+            class="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-black px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-lg transition-all duration-300 bg-transparent inline-flex items-center justify-center gap-2"
+          >
+            <span>Ver Nuestros Proyectos</span>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+
+    {/* Scroll Indicator */}
+    <div
+      class="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden xs:block"
+    >
+      <div
+        class="w-6 h-10 border-2 border-white rounded-full flex justify-center"
+      >
+        <div class="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+      </div>
+    </div>
+  </section>
