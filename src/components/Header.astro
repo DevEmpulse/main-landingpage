@@ -9,7 +9,7 @@ const whatsappUrl =
 >
   <div
     id="header-shell"
-    class="backdrop-blur-sm shadow-lg bg-white/90 rounded-2xl md:rounded-full border border-white/60 transition-all duration-300"
+    class="backdrop-blur-sm shadow-lg bg-gradient-to-br  rounded-2xl md:rounded-full border border-gray-700/60 transition-all duration-300"
   >
     <div id="header-inner" class="px-2 md:px-3 py-1 md:py-2 transition-all duration-300">
       <div class="flex items-center justify-between gap-3">
@@ -25,7 +25,7 @@ const whatsappUrl =
           />
           <span
             id="brand-text"
-            class="text-xl md:text-2xl font-bold text-gray-900 whitespace-nowrap transition-all duration-300"
+            class="text-xl md:text-2xl font-bold text-white whitespace-nowrap transition-all duration-300"
           >
             Empulse
           </span>
@@ -33,10 +33,10 @@ const whatsappUrl =
 
                  <!-- Desktop Nav -->
          <nav class="hidden md:flex items-center gap-6 lg:gap-8">
-           <button data-scroll="home" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">HOME</button>
-           <button data-scroll="servicios" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">SERVICIOS</button>
-           <button data-scroll="proyectos" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">PROYECTOS</button>
-           <button data-scroll="contacto" class="text-gray-700 hover:text-pink-600 transition-colors duration-200 font-medium cursor-pointer">CONTACTO</button>
+           <button data-scroll="home" class="text-gray-300 hover:text-pink-400 transition-colors duration-200 font-medium cursor-pointer">HOME</button>
+           <button data-scroll="servicios" class="text-gray-300 hover:text-pink-400 transition-colors duration-200 font-medium cursor-pointer">SERVICIOS</button>
+           <button data-scroll="proyectos" class="text-gray-300 hover:text-pink-400 transition-colors duration-200 font-medium cursor-pointer">PROYECTOS</button>
+           <button data-scroll="contacto" class="text-gray-300 hover:text-pink-400 transition-colors duration-200 font-medium cursor-pointer">CONTACTO</button>
          </nav>
 
                  <!-- Desktop CTA -->
@@ -44,7 +44,7 @@ const whatsappUrl =
            href={whatsappUrl}
            target="_blank"
            rel="noopener noreferrer"
-           class="hidden md:inline-flex items-center gap-2 bg-black text-white font-semibold py-2 px-4 rounded-full text-md lg:text-md transition-all duration-300 hover:scale-105 shadow-lg group"
+           class="hidden md:inline-flex items-center gap-2 bg-pink-600 text-white font-semibold py-2 px-4 rounded-full text-md lg:text-md transition-all duration-300 hover:scale-105 shadow-lg group"
          >
            <span>Contáctanos</span>
            <svg 
@@ -60,32 +60,32 @@ const whatsappUrl =
         <!-- Mobile Toggle -->
         <button
           id="menu-btn"
-          class="md:hidden p-2 rounded-lg border border-gray-200"
+          class="md:hidden p-2 rounded-lg border border-gray-600"
           aria-label="Abrir menú"
           aria-expanded="false"
           aria-controls="mobile-nav"
         >
-          <Menu id="icon-open" class="w-6 h-6 text-gray-700" />
-          <X id="icon-close" class="w-6 h-6 text-gray-700 hidden" />
+          <Menu id="icon-open" class="w-6 h-6 text-gray-300" />
+          <X id="icon-close" class="w-6 h-6 text-gray-300 hidden" />
         </button>
       </div>
 
       <!-- Mobile Nav -->
       <nav
         id="mobile-nav"
-        class="md:hidden mt-3 pt-3 border-t border-gray-100 hidden"
+        class="md:hidden mt-3 pt-3 border-t border-gray-700 hidden"
       >
                  <div class="flex flex-col gap-3">
-           <button data-scroll="home" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">HOME</button>
-           <button data-scroll="servicios" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">SERVICIOS</button>
-           <button data-scroll="proyectos" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">PROYECTOS</button>
-           <button data-scroll="contacto" class="text-left text-gray-800 hover:text-pink-600 transition-colors font-medium">CONTACTO</button>
+           <button data-scroll="home" class="text-left text-gray-300 hover:text-pink-400 transition-colors font-medium">HOME</button>
+           <button data-scroll="servicios" class="text-left text-gray-300 hover:text-pink-400 transition-colors font-medium">SERVICIOS</button>
+           <button data-scroll="proyectos" class="text-left text-gray-300 hover:text-pink-400 transition-colors font-medium">PROYECTOS</button>
+           <button data-scroll="contacto" class="text-left text-gray-300 hover:text-pink-400 transition-colors font-medium">CONTACTO</button>
 
                      <a
              href={whatsappUrl}
              target="_blank"
              rel="noopener noreferrer"
-             class="mt-2 inline-flex items-center gap-2 justify-center bg-black text-white font-semibold py-2.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-md group"
+             class="mt-2 inline-flex items-center gap-2 justify-center bg-pink-600 text-white font-semibold py-2.5 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-md group"
            >
              <span>Contactanos</span>
              <svg 

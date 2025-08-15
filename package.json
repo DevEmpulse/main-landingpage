@@ -12,11 +12,7 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/sitemap": "^3.4.1",
     "@lucide/astro": "^0.522.0",
-    "@tailwindcss/vite": "^4.1.10",
-    "@tsparticles/engine": "^3.9.1",
-    "@tsparticles/slim": "^3.9.1",
     "astro": "^5.10.0",
-    "astro-particles": "^2.10.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.10"
