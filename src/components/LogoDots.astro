@@ -62,7 +62,7 @@
 
     // Fondo negro + halo radial suave como el ref
     const rw = canvas.width / DPR, rh = canvas.height / DPR;
-    ctx.fillStyle = "black"; ctx.fillRect(0, 0, rw, rh);
+    //ctx.fillStyle = "black"; ctx.fillRect(0, 0, rw, rh);
     const rad = ctx.createRadialGradient(rw/2, rh/2, 0, rw/2, rh/2, Math.max(rw, rh)/2);
     rad.addColorStop(0, "rgba(255,255,255,0.05)");
     rad.addColorStop(0.5, "rgba(255,255,255,0.02)");

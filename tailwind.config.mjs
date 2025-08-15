@@ -10,6 +10,10 @@ export default {
           '100%': { transform: 'translateY(0)', opacity: '1' },
         }
       },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+        opensans: ['Open Sans', 'sans-serif'],
+      },
       animation: {
         slideIn: 'slideIn 0.5s ease-out forwards',
       }
