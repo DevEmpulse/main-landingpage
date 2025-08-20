@@ -6,7 +6,7 @@ const whatsappUrl =
 
 <section
   id="home"
-  class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden snap-section"
+  class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden "
 >
   {/* Marco sutil */}
   <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
@@ -27,12 +27,12 @@ const whatsappUrl =
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-0">
     {/* IZQUIERDA */}
     <div class="col-span-12 lg:col-span-6 xl:col-span-5">
-      <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight font-montserrat">
+      <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight font-poppins">
         Diseñamos y desarrollamos
-        <span class="text-pink-600"> soluciones IT</span> a medida
+        <span class="text-pink-600 italic font-playfair">soluciones IT</span>
       </h1>
-      <p class="mt-4 sm:mt-5 text-ls sm:text-lg md:text-xl text-gray-300 max-w-[46ch] font-opensans">
-        Para empresas que quieren crecer, digitalizarse y optimizar su
+      <p class="mt-4 sm:mt-5 text-ls sm:text-lg md:text-xl text-gray-300 max-w-[46ch] font-poppins">
+        Para empresas y personas que quieren crecer, digitalizarse y optimizar su
         operación
       </p>
     </div>
@@ -42,10 +42,8 @@ const whatsappUrl =
 
   {/* DERECHA */}
   <div class="absolute right-4 bottom-6 sm:right-10 sm:bottom-10 lg:right-20 lg:bottom-20 z-20 text-right">
-    <p class="text-ls sm:text-lg md:text-base text-gray-300 mb-4 sm:mb-6 font-opensans leading-relaxed">
-      Páginas web profesionales, software a medida,<br class="hidden sm:block">
-      automatización de procesos y soporte<br class="hidden sm:block">
-      especializado
+    <p class="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-4 sm:mb-6 font-poppins leading-relaxed" id="animated-text">
+      Páginas web profesionales
     </p>
 
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end items-end sm:items-center">
@@ -103,8 +101,54 @@ const whatsappUrl =
 
 
 <script>
-
-
   import "../scripts/gsapScroll";
 
+  // Animación de texto cambiando frases
+  function animateText() {
+    const textElement = document.getElementById('animated-text');
+    if (!textElement) return;
+
+    const phrases = [
+      "Páginas web profesionales",
+      "Software a medida",
+      "Automatización de procesos",
+      "Soporte especializado"
+    ];
+    
+    let currentIndex = 0;
+    const displayTime = 2000; // Tiempo que se muestra cada frase (2 segundos)
+    const fadeTime = 500; // Tiempo de transición (0.5 segundos)
+    
+    function showNextPhrase() {
+      if (currentIndex >= phrases.length) {
+        currentIndex = 0; // Volver al inicio
+      }
+      
+      const phrase = phrases[currentIndex];
+      
+      // Efecto de fade out
+      textElement!.style.transition = `opacity ${fadeTime}ms ease-out`;
+      textElement!.style.opacity = '0';
+      
+      setTimeout(() => {
+        // Cambiar el texto
+        textElement!.textContent = phrase;
+        
+        // Efecto de fade in
+        textElement!.style.transition = `opacity ${fadeTime}ms ease-in`;
+        textElement!.style.opacity = '1';
+        
+        currentIndex++;
+        
+        // Programar la siguiente frase
+        setTimeout(showNextPhrase, displayTime);
+      }, fadeTime);
+    }
+    
+    // Iniciar la animación después de un delay
+    setTimeout(showNextPhrase, 1000);
+  }
+
+  // Ejecutar la animación cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', animateText);
 </script>

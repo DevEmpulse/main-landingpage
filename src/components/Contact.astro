@@ -1,41 +1,28 @@
 ---
-import { Phone, Mail, MapPin, Clock } from '@lucide/astro';
+import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from '@lucide/astro';
 const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios';
 import ContactFormClient from './ContactFormClient.tsx';
-const whatsapp = '+54 3841 453879';
 const email = 'empulse.dev@gmail.com';
 ---
 
-<section id="contacto" class="py-20 bg-white">
-  <!-- JSON-LD de ContactPoint para SEO -->
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Empulse",
-      "url": "https://empulse.site",
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "telephone": whatsapp.replace(/\D/g, ''),
-          "contactType": "sales",
-          "areaServed": "AR",
-          "availableLanguage": ["es", "en"]
-        },
-        {
-          "@type": "ContactPoint",
-          "email": email,
-          "contactType": "customer service"
-        }
-      ]
-    })}
-  </script>
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+<section id="contacto" class="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden">
+  <!-- Marco sutil -->
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
+
+  <!-- Fondo con efecto de partículas -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.1),transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(20,184,166,0.1),transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(251,191,36,0.1),transparent_50%)]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16" id="contact-title">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-poppins">
         <span class="text-pink-600">Contacto</span>
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto font-poppins leading-relaxed">
         ¿Listo para transformar tu negocio? Contáctanos y comencemos a trabajar juntos
       </p>
     </div>
@@ -43,78 +30,110 @@ const email = 'empulse.dev@gmail.com';
     <div class="grid lg:grid-cols-2 gap-12">
       <!-- Contact Info -->
       <div class="space-y-8">
-        <h3 class="text-2xl font-bold text-gray-900 mb-6">Información de Contacto</h3>
+        <h3 class="text-2xl font-bold text-white mb-6 font-poppins">Información de Contacto</h3>
         <div class="space-y-6">
-          <div class="flex items-start space-x-4">
-            <div class="bg-pink-100 p-3 rounded-lg">
-              <Phone class="w-6 h-6 text-pink-600" />
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-900">WhatsApp</h4>
-              <p class="text-gray-600">+54 3841 453879</p>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-pink-600 hover:text-pink-700 font-medium mt-1 inline-block">
-                Enviar mensaje →
-              </a>
-            </div>
-          </div>
-
-          <div class="flex items-start space-x-4">
-            <div class="bg-pink-100 p-3 rounded-lg">
-              <Mail class="w-6 h-6 text-pink-600" />
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-900">Email</h4>
-              <p class="text-gray-600">{email}</p>
+          <div class="contact-card group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105">
+            <div class="flex items-start space-x-4">
+              <div class="bg-pink-600/20 p-3 rounded-lg backdrop-blur-sm">
+                <Phone class="w-6 h-6 text-pink-500" />
+              </div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-white font-poppins">WhatsApp</h4>
+                <p class="text-gray-300 font-poppins">+54 3841 453879</p>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-pink-400 hover:text-pink-300 font-medium mt-2 inline-flex items-center gap-2 transition-all duration-300 hover:gap-3 cursor-pointer">
+                  <span>Enviar mensaje</span>
+                  <MessageCircle class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
-            <div class="bg-pink-100 p-3 rounded-lg">
-              <MapPin class="w-6 h-6 text-pink-600" />
-            </div>
-            <div>
-              <h4 class="font-semibold text-gray-900">Ubicación</h4>
-              <p class="text-gray-600">Trabajamos de forma remota<br />Atendemos toda Latinoamérica</p>
+          <div class="contact-card group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-teal-500/50 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105">
+            <div class="flex items-start space-x-4">
+              <div class="bg-teal-600/20 p-3 rounded-lg backdrop-blur-sm">
+                <Mail class="w-6 h-6 text-teal-500" />
+              </div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-white font-poppins">Email</h4>
+                <p class="text-gray-300 font-poppins">{email}</p>
+                <a href={`mailto:${email}`} class="text-teal-400 hover:text-teal-300 font-medium mt-2 inline-flex items-center gap-2 transition-all duration-300 hover:gap-3 cursor-pointer">
+                  <span>Enviar email</span>
+                  <Send class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="flex items-start space-x-4">
-            <div class="bg-pink-100 p-3 rounded-lg">
-              <Clock class="w-6 h-6 text-pink-600" />
+          <div class="contact-card group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-yellow-500/50 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105">
+            <div class="flex items-start space-x-4">
+              <div class="bg-yellow-600/20 p-3 rounded-lg backdrop-blur-sm">
+                <MapPin class="w-6 h-6 text-yellow-500" />
+              </div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-white font-poppins">Ubicación</h4>
+                <p class="text-gray-300 font-poppins">Trabajamos de forma remota<br />Atendemos toda Latinoamérica</p>
+              </div>
             </div>
-            <div>
-              <h4 class="font-semibold text-gray-900">Horarios</h4>
-              <p class="text-gray-600">Lunes a Viernes: 9:00 - 18:00<br />Sábados y Domingos: 9:00 - 14:00</p>
+          </div>
+
+          <div class="contact-card group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105">
+            <div class="flex items-start space-x-4">
+              <div class="bg-blue-600/20 p-3 rounded-lg backdrop-blur-sm">
+                <Clock class="w-6 h-6 text-blue-500" />
+              </div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-white font-poppins">Horarios</h4>
+                <p class="text-gray-300 font-poppins">Lunes a Viernes: 9:00 - 18:00<br />Sábados y Domingos: 9:00 - 14:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección de beneficios adicionales -->
+        <div class="bg-gradient-to-r from-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 mt-8">
+          <h4 class="text-lg font-bold text-white mb-4 font-poppins">¿Por qué elegirnos?</h4>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+              <p class="text-gray-300 text-sm font-poppins">Respuesta en menos de 24 horas</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-teal-500 rounded-full"></div>
+              <p class="text-gray-300 text-sm font-poppins">Consultoría gratuita inicial</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+              <p class="text-gray-300 text-sm font-poppins">Presupuesto sin compromiso</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Formulario -->
-      <div class="bg-gray-50 rounded-xl p-8">
-        <h3 class="text-2xl font-bold text-gray-900 mb-6">Envíanos un Mensaje</h3>
+      <div class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50">
+        <h3 class="text-2xl font-bold text-white mb-6 font-poppins">Envíanos un Mensaje</h3>
         <form id="contact-form" class="space-y-6">
           <input type="hidden" name="_language" value="es" />
           <input type="hidden" name="_subject" value="Nuevo mensaje de contacto desde el sitio web" />
           <div class="grid md:grid-cols-2 gap-6">
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nombre *</label>
-              <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors" placeholder="Tu nombre completo" />
+              <label for="name" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Nombre *</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors text-white placeholder-gray-400 font-poppins" placeholder="Tu nombre completo" />
             </div>
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-              <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors" placeholder="tu@email.com" />
+              <label for="email" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Email *</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors text-white placeholder-gray-400 font-poppins" placeholder="tu@email.com" />
             </div>
           </div>
 
           <div>
-            <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
-            <input type="text" id="company" name="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors" placeholder="Nombre de tu empresa" />
+            <label for="company" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Empresa</label>
+            <input type="text" id="company" name="company" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors text-white placeholder-gray-400 font-poppins" placeholder="Nombre de tu empresa" />
           </div>
 
           <div>
-            <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Servicio de Interés</label>
-            <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors">
+            <label for="service" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Servicio de Interés</label>
+            <select id="service" name="service" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors text-white font-poppins">
               <option value="">Selecciona un servicio</option>
               <option value="software">Desarrollo de Software</option>
               <option value="automation">Automatización de Procesos</option>
@@ -124,24 +143,100 @@ const email = 'empulse.dev@gmail.com';
           </div>
 
           <div>
-            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Mensaje *</label>
-            <textarea id="message" name="message" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors resize-none" placeholder="Cuéntanos sobre tu proyecto o necesidades..."></textarea>
+            <label for="message" class="block text-sm font-medium text-gray-300 mb-2 font-poppins">Mensaje *</label>
+            <textarea id="message" name="message" required rows="4" class="w-full px-4 py-3 bg-gray-800/50 border border-gray-600/50 rounded-lg focus:ring-2 focus:ring-pink-600 focus:border-transparent transition-colors resize-none text-white placeholder-gray-400 font-poppins" placeholder="Cuéntanos sobre tu proyecto o necesidades..."></textarea>
           </div>
 
-          <button type="submit" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">ENVIAR MENSAJE</button>
+          <button type="submit" class="w-full bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] cursor-pointer font-poppins">
+            ENVIAR MENSAJE
+          </button>
         </form>
       </div>
+    </div>
 
-      <!-- Modal -->
-      <div id="success-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
-  <div class="bg-white rounded-xl p-6 text-center shadow-xl max-w-sm w-full">
-    <h3 class="text-xl font-bold text-gray-900 mb-2">¡Mensaje enviado!</h3>
-    <p class="text-gray-700">Gracias por contactarnos. Te responderemos pronto.</p>
-    <button id="close-modal" class="mt-4 px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-lg">Cerrar</button>
-  </div>
-</div>
+    <!-- Modal -->
+    <div id="success-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+      <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 text-center shadow-xl max-w-sm w-full border border-gray-700/50">
+        <h3 class="text-xl font-bold text-white mb-2 font-poppins">¡Mensaje enviado!</h3>
+        <p class="text-gray-300 font-poppins">Gracias por contactarnos. Te responderemos pronto.</p>
+        <button id="close-modal" class="mt-4 px-4 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-all duration-300 font-poppins">Cerrar</button>
+      </div>
     </div>
   </div>
 </section>
 
 <ContactFormClient client:only="react" />
+
+<script>
+  import "../scripts/gsapScroll";
+
+  // Animaciones para las tarjetas de contacto
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactCards = document.querySelectorAll('.contact-card');
+    contactCards.forEach((card, index) => {
+      const cardElement = card as HTMLElement;
+      setTimeout(() => {
+        cardElement.style.transform = 'translateY(0)';
+        cardElement.style.opacity = '1';
+      }, index * 150);
+    });
+  });
+
+  // Efectos de hover para las tarjetas de contacto
+  document.querySelectorAll('.contact-card').forEach(card => {
+    const cardElement = card as HTMLElement;
+    cardElement.addEventListener('mouseenter', () => {
+      cardElement.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+
+    cardElement.addEventListener('mouseleave', () => {
+      cardElement.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+</script>
+
+<style>
+  .contact-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .contact-card:hover::before {
+    left: 100%;
+  }
+
+  .contact-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(236,72,153,0.2);
+  }
+
+  /* Estilos para inputs y selects */
+  input, select, textarea {
+    background-color: rgba(31, 41, 55, 0.5) !important;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    background-color: rgba(31, 41, 55, 0.8) !important;
+  }
+
+  /* Asegurar que los enlaces sean clickeables */
+  .contact-card a {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+  }
+
+  .contact-card a:hover {
+    text-decoration: none;
+  }
+</style>

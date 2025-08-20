@@ -1,114 +1,250 @@
 ---
-import { ExternalLink, Calendar } from '@lucide/astro';
+import { ExternalLink, Calendar, Code, Globe, Zap } from '@lucide/astro';
 
 const projects = [
   {
-    title: "Sistema de Facturacion",
-    description: "Sistema para manejar el cobro de agua potable, carga de facturas y montos, donde luego se generara un resumen del día, aplicando comisiones.",
+    title: "Sistema de Facturación",
+    subtitle: "Automatización completa",
+    description: "Sistema integral para manejar el cobro de agua potable, carga de facturas y montos, donde luego se genera un resumen del día aplicando comisiones automáticamente.",
     image: "/facturacion.jpg?height=300&width=400",
     category: "Automatización",
     date: "2025",
     technologies: ["React", "TypeScript", "Tailwind", "IndexedDB"],
+    icon: Code,
+    color: "text-blue-500",
+    bgColor: "bg-blue-500/20",
+    problem: "3 h al día en planillas manuales",
+    solution: "Sistema web a medida + lector de códigos",
+    result: "⏱ 85% menos tiempo operativo"
   },
   {
-    title: "Ramser S.A.S.",
-    description: "Landing page para sociedad encargada de la sanidad ambiental y el control de plagas en el N.E.A.",
+    title: "Landing Page Ramser S.A.S",
+    subtitle: "Presencia digital profesional",
+    description: "Landing page moderna para sociedad encargada de la sanidad ambiental y el control de plagas en el N.E.A., con diseño enfocado en conversión.",
     image: "/Ramser.png?height=300&width=400",
     category: "Landing Page",
     date: "2024",
     technologies: ["Astro", "JavaScript", "Tailwind CSS"],
-  },/*
-  {
-    title: "App Móvil de Delivery",
-    description: "Aplicación móvil para pedidos y delivery con sistema de tracking en tiempo real.",
-    image: "/placeholder.svg?height=300&width=400",
-    category: "Aplicación Móvil",
-    date: "2023",
-    technologies: ["React Native", "Firebase", "Maps API"],
-  },
-  {
-    title: "Dashboard Analítico",
-    description: "Panel de control con métricas en tiempo real y reportes automatizados para toma de decisiones.",
-    image: "/placeholder.svg?height=300&width=400",
-    category: "Business Intelligence",
-    date: "2023",
-    technologies: ["Vue.js", "D3.js", "MongoDB"],
-  },*/
+    icon: Globe,
+    color: "text-teal-500",
+    bgColor: "bg-teal-500/20",
+    problem: "Sin presencia digital",
+    solution: "Landing optimizada + formulario/CTA",
+    result: "Generación de contactos desde la primera semana"
+  }
 ];
 
 const whatsappUrl = "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios";
+
+// Función para generar mensaje personalizado por proyecto
+function getProjectWhatsAppUrl(projectTitle: string) {
+  const message = `Hola, me interesa una solución similar al proyecto "${projectTitle}". ¿Podrían contarme más sobre cómo pueden ayudarme?`;
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/543841453879?text=${encodedMessage}`;
+}
 ---
 
-<section id="proyectos" class="py-20 bg-gray-50 snap-section">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+<section id="proyectos" class="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden">
+  <!-- Marco sutil -->
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
+
+  <!-- Fondo con efecto de partículas -->
+  <div class="absolute inset-0 opacity-20">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.1),transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(20,184,166,0.1),transparent_50%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(251,191,36,0.1),transparent_50%)]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16" id="projects-title">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-poppins">
         Nuestros <span class="text-pink-600">Proyectos</span>
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+      <p class="text-xl text-gray-300 max-w-4xl mx-auto font-poppins leading-relaxed">
         Conoce algunos de los proyectos que hemos desarrollado para nuestros clientes y proyectos propios
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-      {projects.map((project) => (
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-        >
-          <div class="relative h-48 overflow-hidden">
+         <div class="grid md:grid-cols-2 gap-4 md:gap-8 mb-16">
+      {projects.map((project, index) => (
+                 <div
+           class="project-card group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 transform hover:-translate-y-3 hover:scale-105"
+           id={`project-card-${index}`}
+         >
+           <div class="relative h-40 md:h-48 overflow-hidden">
             <img
               src={project.image}
               alt={project.title}
               loading="lazy"
-              class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <span class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-pink-600/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
               {project.category}
             </span>
+            <div class={`absolute top-4 right-4 w-12 h-12 ${project.bgColor} rounded-full flex items-center justify-center backdrop-blur-sm`}>
+              <project.icon class={`w-6 h-6 ${project.color}`} />
+            </div>
           </div>
 
-          <div class="p-6">
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-xl font-bold text-gray-900">{project.title}</h3>
-              <div class="flex items-center text-gray-500 text-sm">
-                <Calendar class="w-4 h-4 mr-1" />
-                {project.date}
-              </div>
-            </div>
+                     <div class="p-4 md:p-6">
+             <div class="flex items-center justify-between mb-2 md:mb-3">
+               <div>
+                 <h3 class="text-lg md:text-xl font-bold text-white font-poppins mb-1">{project.title}</h3>
+                 <p class="text-pink-400 font-medium text-xs md:text-sm font-poppins">{project.subtitle}</p>
+               </div>
+               <div class="flex items-center text-gray-400 text-xs md:text-sm">
+                 <Calendar class="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                 {project.date}
+               </div>
+             </div>
 
-            <p class="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+             <p class="text-gray-300 mb-3 md:mb-4 leading-relaxed font-poppins text-sm md:text-base">{project.description}</p>
 
-            <div class="flex flex-wrap gap-2 mb-4">
-              {project.technologies.map((tech) => (
-                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
-                  {tech}
-                </span>
-              ))}
-            </div>
+             {/* Problema, Solución y Resultado */}
+             <div class="space-y-2 md:space-y-3 mb-3 md:mb-4">
+               <div class="flex items-start gap-2 md:gap-3">
+                 <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-red-500 rounded-full mt-1.5 md:mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p class="text-red-400 font-semibold text-xs md:text-sm font-poppins mb-0.5 md:mb-1">Problema:</p>
+                   <p class="text-gray-300 text-xs md:text-sm font-poppins">{project.problem}</p>
+                 </div>
+               </div>
+               
+               <div class="flex items-start gap-2 md:gap-3">
+                 <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full mt-1.5 md:mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p class="text-blue-400 font-semibold text-xs md:text-sm font-poppins mb-0.5 md:mb-1">Solución:</p>
+                   <p class="text-gray-300 text-xs md:text-sm font-poppins">{project.solution}</p>
+                 </div>
+               </div>
+               
+               <div class="flex items-start gap-2 md:gap-3">
+                 <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-500 rounded-full mt-1.5 md:mt-2 flex-shrink-0"></div>
+                 <div>
+                   <p class="text-green-400 font-semibold text-xs md:text-sm font-poppins mb-0.5 md:mb-1">Resultado:</p>
+                   <p class="text-gray-300 text-xs md:text-sm font-poppins">{project.result}</p>
+                 </div>
+               </div>
+             </div>
+
+             <div class="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4">
+               {project.technologies.map((tech) => (
+                 <span class="bg-gray-700/50 text-gray-300 px-2 md:px-3 py-0.5 md:py-1 rounded-full text-xs md:text-sm font-poppins border border-gray-600/50">
+                   {tech}
+                 </span>
+               ))}
+             </div>
 
             <a
-              href={whatsappUrl}
+              href={getProjectWhatsAppUrl(project.title)}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center text-pink-600 hover:text-pink-700 font-medium transition-colors"
+              class="inline-flex items-center text-pink-400 hover:text-pink-300 font-medium transition-all duration-300 hover:gap-3 cursor-pointer z-10 relative text-sm md:text-base"
             >
-              Proyecto Similar
-              <ExternalLink class="w-4 h-4 ml-2" />
+              <span>Quiero una solución similar</span>
+              <ExternalLink class="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
           </div>
+          
+          <!-- Efecto de brillo en hover -->
+          <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
         </div>
       ))}
     </div>
 
-    <div class="text-center">
+   
+    <div class="text-center" id="projects-cta">
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-transform transform hover:scale-105 shadow-lg"
+        class="inline-flex items-center gap-3 bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] group"
       >
-        DISCUTIR MI PROYECTO
+        <span>DISCUTIR MI PROYECTO</span>
+        <svg 
+          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+        </svg>
       </a>
     </div>
   </div>
 </section>
+
+<script>
+  import "../scripts/gsapScroll";
+
+  // Animaciones simples para las tarjetas de proyectos
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach((card, index) => {
+      const cardElement = card as HTMLElement;
+      setTimeout(() => {
+        cardElement.style.transform = 'translateY(0)';
+        cardElement.style.opacity = '1';
+      }, index * 200);
+    });
+  });
+
+  // Efectos de hover mejorados
+  document.querySelectorAll('.project-card').forEach(card => {
+    const cardElement = card as HTMLElement;
+    cardElement.addEventListener('mouseenter', () => {
+      cardElement.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+
+    cardElement.addEventListener('mouseleave', () => {
+      cardElement.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+
+  // Verificar que los enlaces de WhatsApp funcionen
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    const linkElement = link as HTMLAnchorElement;
+    linkElement.addEventListener('click', (e) => {
+      console.log('Enlace WhatsApp clickeado:', linkElement.href);
+    });
+  });
+</script>
+
+<style>
+  .project-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .project-card:hover::before {
+    left: 100%;
+  }
+
+  .project-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(236,72,153,0.2);
+  }
+
+  /* Asegurar que los enlaces sean clickeables */
+  .project-card a {
+    position: relative;
+    z-index: 20;
+    pointer-events: auto;
+  }
+
+  .project-card a:hover {
+    text-decoration: none;
+  }
+</style>
