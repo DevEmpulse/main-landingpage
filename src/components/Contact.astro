@@ -17,6 +17,51 @@ const email = 'empulse.dev@gmail.com';
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(251,191,36,0.1),transparent_50%)]"></div>
   </div>
 
+  <!-- Datos estructurados de contacto -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contacto - Empulse Desarrollo de Software",
+      "description": "Contacta con Empulse para desarrollo de software a medida, páginas web profesionales y automatización de procesos en Argentina",
+      "url": "https://empulse.site/#contacto",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Empulse",
+        "url": "https://empulse.site",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+54-384-145-3879",
+            "contactType": "customer service",
+            "availableLanguage": "Spanish",
+            "areaServed": "AR",
+            "serviceArea": {
+              "@type": "Country",
+              "name": "Argentina"
+            }
+          },
+          {
+            "@type": "ContactPoint",
+            "email": "empulse.dev@gmail.com",
+            "contactType": "customer service",
+            "availableLanguage": "Spanish"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "AR",
+          "addressRegion": "Argentina"
+        },
+        "openingHours": "Mo-Fr 09:00-18:00, Sa-Su 09:00-14:00",
+        "sameAs": [
+          "https://www.instagram.com/empulse.site",
+          "https://wa.me/543841453879"
+        ]
+      }
+    })}
+  </script>
+
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-16" id="contact-title">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-poppins">

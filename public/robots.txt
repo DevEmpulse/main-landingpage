@@ -1,4 +1,27 @@
 User-agent: *
 Allow: /
 
+# Permitir indexación de todos los recursos importantes
+Allow: /src/
+Allow: /public/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+
+# Bloquear archivos de configuración y desarrollo
+Disallow: /node_modules/
+Disallow: /.astro/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /tsconfig.json
+Disallow: /tailwind.config.mjs
+Disallow: /astro.config.mjs
+
+# Sitemap
 Sitemap: https://empulse.site/sitemap.xml
+
+# Crawl-delay para ser respetuoso con el servidor
+Crawl-delay: 1

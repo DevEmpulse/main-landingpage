@@ -86,6 +86,43 @@ function getProjectWhatsAppUrl(projectTitle: string) {
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(251,191,36,0.1),transparent_50%)]"></div>
   </div>
 
+  <!-- Datos estructurados para proyectos -->
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Proyectos de Desarrollo de Software",
+      "description": "Portfolio de proyectos de desarrollo de software a medida, páginas web profesionales y automatización de procesos realizados por Empulse",
+      "itemListElement": projects.map((project, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "CreativeWork",
+          "name": project.title,
+          "description": project.description,
+          "creator": {
+            "@type": "Organization",
+            "name": "Empulse",
+            "url": "https://empulse.site"
+          },
+          "dateCreated": project.date,
+          "genre": project.category,
+          "keywords": project.technologies.join(", "),
+          "image": {
+            "@type": "ImageObject",
+            "url": `https://empulse.site${project.image}`,
+            "width": 400,
+            "height": 300
+          },
+          "about": {
+            "@type": "Thing",
+            "name": project.category
+          }
+        }
+      }))
+    })}
+  </script>
+
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-16" id="projects-title">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 font-poppins">

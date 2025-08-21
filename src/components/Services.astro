@@ -51,7 +51,7 @@ const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20con
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(251,191,36,0.1),transparent_50%)]"></div>
   </div>
 
-  <!-- JSON-LD datos estructurados de servicios -->
+  <!-- JSON-LD datos estructurados de servicios mejorados -->
   <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
@@ -62,7 +62,28 @@ const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20con
         "provider": {
           "@type": "Organization",
           "name": "Empulse",
-          "url": "https://empulse.site"
+          "url": "https://empulse.site",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AR",
+            "addressRegion": "Argentina"
+          }
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Argentina"
+        },
+        "serviceType": s.title,
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": s.title,
+          "itemListElement": s.features.map(feature => ({
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": feature
+            }
+          }))
         }
       }))
     })}

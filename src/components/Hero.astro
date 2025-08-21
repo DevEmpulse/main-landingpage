@@ -1,7 +1,7 @@
 ---
 import LogoDots from "../components/LogoDots.astro";
 const whatsappUrl =
-  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios";
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20desarrollo%20de%20software";
 ---
 
 <section
@@ -52,6 +52,7 @@ const whatsappUrl =
         target="_blank"
         rel="noopener noreferrer"
         class="bg-pink-600 hover:bg-pink-700 text-white px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] inline-flex items-center justify-center gap-2 group shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset]"
+        aria-label="Contactar para páginas web profesionales"
       >
         <span>Comencemos</span>
         <svg
@@ -72,8 +73,9 @@ const whatsappUrl =
       <a
         href="#proyectos"
         class="border-2 border-white/80 text-white hover:bg-white hover:text-black px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+        aria-label="Ver proyectos de desarrollo de software"
       >
-        <span>Ver Nuestros Proyectos</span>
+        <span>Ver Proyectos Realizados</span>
         <svg
           class="w-4 h-4 sm:w-5 sm:h-5"
           fill="none"
@@ -103,20 +105,20 @@ const whatsappUrl =
 <script>
   import "../scripts/gsapScroll";
 
-  // Animación de texto cambiando frases
+  // Animación de texto cambiando frases optimizadas para SEO
   function animateText() {
     const textElement = document.getElementById('animated-text');
     if (!textElement) return;
 
     const phrases = [
-      "Páginas web profesionales",
-      "Software a medida",
-      "Automatización de procesos",
-      "Soporte especializado"
+      "Desarrollo de Software a Medida",
+      "Páginas Web Profesionales",
+      "Automatización de Procesos",
+      "Soporte IT Especializado",
     ];
     
     let currentIndex = 0;
-    const displayTime = 2000; // Tiempo que se muestra cada frase (2 segundos)
+    const displayTime = 2500; // Tiempo que se muestra cada frase (2.5 segundos)
     const fadeTime = 500; // Tiempo de transición (0.5 segundos)
     
     function showNextPhrase() {

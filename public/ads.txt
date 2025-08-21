@@ -1,0 +1,3 @@
+# Archivo ads.txt para Empulse
+# Este archivo permite la venta programática de anuncios
+# Por ahora está vacío, pero puede ser útil para futuras integraciones
