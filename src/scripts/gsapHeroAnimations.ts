@@ -1,13 +1,8 @@
 // src/scripts/gsapScroll.ts
 
 import { gsap } from "gsap";
-import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
-
-// Registra los plugins al inicio del script
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export function initGsapScroll() {
-  
   // en el primer elemento con el ID '#home')
   const homeSection = document.querySelector<HTMLElement>("#home");
   if (homeSection) {
