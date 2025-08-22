@@ -4,9 +4,101 @@ import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
 import Projects from '../components/Projects.astro';
 import Contact from '../components/Contact.astro';
+
+// Metadatos SEO específicos para la página principal
+const seoData = {
+  title: 'Empulse - Desarrollo de Software y Páginas Web Profesionales en Argentina',
+  description: 'Empresa líder en desarrollo de software a medida, páginas web profesionales, automatización de procesos y soporte IT en Argentina. Soluciones tecnológicas que optimizan tu negocio y potencian el crecimiento. Más de 85% de ahorro en tiempo operativo.',
+  keywords: 'desarrollo de software argentina, páginas web profesionales, automatización de procesos, soporte IT, desarrollo web a medida, software empresarial, optimización de procesos, digitalización empresarial, desarrollo de aplicaciones, consultoría IT, React, TypeScript, Next.js',
+  url: 'https://empulse.site',
+  ogImage: 'https://empulse.site/social-preview.png'
+};
 ---
 
-<Layout>
+<Layout title={seoData.title} description={seoData.description} url={seoData.url}>
+  <!-- Datos estructurados específicos para la página principal -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Empulse - Desarrollo de Software y Páginas Web Profesionales",
+      "description": "Empresa líder en desarrollo de software a medida, páginas web profesionales, automatización de procesos y soporte IT en Argentina",
+      "url": "https://empulse.site",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Empulse",
+        "url": "https://empulse.site",
+        "description": "Empresa líder en desarrollo de software a medida y soluciones tecnológicas en Argentina",
+        "foundingDate": "2024",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "AR",
+          "addressRegion": "Argentina"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+54-384-145-3879",
+          "contactType": "customer service",
+          "availableLanguage": "Spanish"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Desarrollo de Software",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Desarrollo de Software a Medida",
+                "description": "Aplicaciones web y móviles personalizadas que se adaptan 100% a tu negocio",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Empulse"
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Páginas Web Profesionales",
+                "description": "Diseños modernos enfocados en conversión y generación de clientes",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Empulse"
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Automatización de Procesos",
+                "description": "Convertimos tareas repetitivas en sistemas automáticos que ahorran tiempo",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Empulse"
+                }
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Soporte IT Especializado",
+                "description": "Asistencia técnica rápida y mejora continua para tu tecnología",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Empulse"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  </script>
+
   <Hero/>
   <Services />
   <Projects />

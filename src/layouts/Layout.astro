@@ -3,64 +3,140 @@ import '/src/styles/global.css';
 import Header from '../components/Header.astro';  
 import Footer from '../components/Footer.astro';  
 import WhatsAppButton from '../components/WhatsAppButton.astro';  
-const { title = 'Empulse', description = 'Diseñamos y desarrollamos soluciones IT a medida para empresas que quieren crecer, digitalizarse y optimizar su operación. Páginas web profesionales, software a medida, automatización de procesos y soporte especializado.', url = 'https://empulse.site' } = Astro.props;  
+const { title = 'Empulse - Desarrollo de Software y Páginas Web Profesionales en Argentina', description = 'Empresa líder en desarrollo de software a medida, páginas web profesionales, automatización de procesos y soporte IT en Argentina. Soluciones tecnológicas que optimizan tu negocio y potencian el crecimiento.', url = 'https://empulse.site' } = Astro.props;  
 ---  
 
 <html lang="es">  
   <head>  
     <meta charset="UTF-8" />  
-    <!-- SEO básico -->
+    
+    <!-- SEO básico optimizado -->
     <title>{title}</title>  
     <meta name="description" content={description} />  
-    <meta name="keywords" content="gestión de proyectos, tareas, productividad, organización" />  
-    <meta name="author" content="Empulse Team" />  
-    <meta name="robots" content="index, follow" />  
+    <meta name="keywords" content="desarrollo de software argentina, páginas web profesionales, automatización de procesos, soporte IT, desarrollo web a medida, software empresarial, optimización de procesos, digitalización empresarial, desarrollo de aplicaciones, consultoría IT" />  
+    <meta name="author" content="Empulse - Desarrollo de Software" />  
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />  
+    <meta name="language" content="es" />
+    <meta name="geo.region" content="AR" />
+    <meta name="geo.placename" content="Argentina" />
 
     <!-- Responsive y seguridad -->  
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
     <link rel="canonical" href={url + new URL(Astro.request.url).pathname} />  
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />  
+    <meta name="theme-color" content="#ec4899" />
+    <meta name="msapplication-TileColor" content="#ec4899" />
 
-    <!-- Open Graph (Facebook, LinkedIn…) -->  
+    <!-- Open Graph optimizado (Facebook, LinkedIn…) -->  
     <meta property="og:type" content="website" />  
     <meta property="og:title" content={title} />  
     <meta property="og:description" content={description} />  
     <meta property="og:url" content={url + new URL(Astro.request.url).pathname} />  
-    <meta property="og:image" content={"/logo.svg"} />  
 
-    <!-- Twitter Card -->  
+    <meta property="og:image" content={"/logo.svg"} />  
+    
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Empulse" />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter Card optimizado -->  
     <meta name="twitter:card" content="summary_large_image" />  
     <meta name="twitter:title" content={title} />  
-    <meta name="twitter:description" content={description} />  
+
     <meta name="twitter:image" content={"/logo.svg"} />  
+
+    
+    <meta name="twitter:site" content="@empulse_site" />
+    <meta name="twitter:creator" content="@empulse_site" />
+
 
     <!-- Preload recursos críticos -->  
     <link rel="preload" href="/src/styles/global.css" as="style" />  
-    <link rel="preload" href="/logo.svg" as="image" />  
+    <link rel="preload" href="/logo.svg" as="image" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" as="style" />
 
-    <!-- JSON-LD de organización -->  
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": title,
-        "url": url,
-        "logo": `${url}/logo.svg`,
-        "sameAs": [
-          "https://www.instagram.com/empulse.site"
-        ]
-      })}
-    </script>  
-
-    <!-- JSON-LD WebSite y BreadcrumbList -->
+    <!-- Datos estructurados mejorados -->
     <script type="application/ld+json">
       {JSON.stringify({
         "@context": "https://schema.org",
         "@graph": [
           {
-            "@type": "WebSite",
+            "@type": "Organization",
+            "@id": `${url}#organization`,
+            "name": "Empulse",
             "url": url,
-            "name": title,
+            "logo": {
+              "@type": "ImageObject",
+              "url": `${url}/logo.svg`,
+              "width": 200,
+              "height": 60
+            },
+            "description": "Empresa líder en desarrollo de software a medida y soluciones tecnológicas en Argentina",
+            "foundingDate": "2024",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR",
+              "addressRegion": "Argentina"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+54-384-145-3879",
+              "contactType": "customer service",
+              "availableLanguage": "Spanish"
+            },
+            "sameAs": [
+              "https://www.instagram.com/empulse.site",
+              "https://wa.me/543841453879"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Servicios de Desarrollo de Software",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Desarrollo de Software a Medida",
+                    "description": "Aplicaciones web y móviles personalizadas que se adaptan 100% a tu negocio"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Páginas Web Profesionales",
+                    "description": "Diseños modernos enfocados en conversión y generación de clientes"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Automatización de Procesos",
+                    "description": "Convertimos tareas repetitivas en sistemas automáticos que ahorran tiempo"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Soporte IT Especializado",
+                    "description": "Asistencia técnica rápida y mejora continua para tu tecnología"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": `${url}#website`,
+            "url": url,
+            "name": "Empulse - Desarrollo de Software",
+            "description": "Soluciones tecnológicas a medida para empresas que quieren crecer y digitalizarse",
+            "publisher": {
+              "@id": `${url}#organization`
+            },
             "potentialAction": {
               "@type": "SearchAction",
               "target": `${url}/?s={search_term_string}`,
@@ -69,19 +145,60 @@ const { title = 'Empulse', description = 'Diseñamos y desarrollamos soluciones 
           },
           {
             "@type": "BreadcrumbList",
+            "@id": `${url}#breadcrumb`,
             "itemListElement": [
               { "@type": "ListItem", "position": 1, "name": "Inicio", "item": url },
               { "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${url}#servicios` },
               { "@type": "ListItem", "position": 3, "name": "Proyectos", "item": `${url}#proyectos` },
               { "@type": "ListItem", "position": 4, "name": "Contacto", "item": `${url}#contacto` }
             ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "¿Qué servicios de desarrollo de software ofrecen?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ofrecemos desarrollo de software a medida, páginas web profesionales, automatización de procesos y soporte IT especializado. Creamos soluciones únicas que se adaptan 100% a tu negocio."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿En qué tecnologías desarrollan?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Utilizamos tecnologías modernas como React, TypeScript, Next.js, Astro, Tailwind CSS, y bases de datos como Supabase. Nos adaptamos a las necesidades específicas de cada proyecto."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Cuánto tiempo toma desarrollar un proyecto?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Los tiempos varían según la complejidad. Páginas web simples pueden estar listas en 2-3 semanas, mientras que sistemas complejos pueden tomar 2-3 meses. Siempre entregamos resultados rápidos."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "¿Ofrecen soporte post-lanzamiento?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Sí, ofrecemos soporte especializado 24/7, mantenimiento preventivo, actualizaciones continuas y capacitación del equipo para asegurar que tu tecnología funcione al 100%."
+                }
+              }
+            ]
           }
         ]
       })}
-    </script>  
+    </script>
 
     <!-- Carga de CSS principal -->  
-    <link rel="stylesheet" href="/src/styles/global.css" />  
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />  
   </head>  
   <body class="bg-white text-gray-900">  
     <Header />  
