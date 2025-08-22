@@ -26,13 +26,13 @@ const { title = 'Empulse', description = 'Diseñamos y desarrollamos soluciones 
     <meta property="og:title" content={title} />  
     <meta property="og:description" content={description} />  
     <meta property="og:url" content={url + new URL(Astro.request.url).pathname} />  
-    <meta property="og:image" content={`${url}/social-preview.png`} />  
+    <meta property="og:image" content={"/logo.svg"} />  
 
     <!-- Twitter Card -->  
     <meta name="twitter:card" content="summary_large_image" />  
     <meta name="twitter:title" content={title} />  
     <meta name="twitter:description" content={description} />  
-    <meta name="twitter:image" content={`${url}/social-preview.png`} />  
+    <meta name="twitter:image" content={"/logo.svg"} />  
 
     <!-- Preload recursos críticos -->  
     <link rel="preload" href="/src/styles/global.css" as="style" />  
