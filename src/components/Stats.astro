@@ -1,0 +1,99 @@
+---
+const stats = [
+  {
+    value: 20,
+    suffix: "+",
+    label: "Proyectos exitosos",
+    description: "Soluciones entregadas a medida.",
+  },
+  {
+    value: 15,
+    suffix: "+",
+    label: "Clientes con mantenimiento",
+    description: "Soporte y mejoras continuas.",
+  },
+  {
+    value: 100,
+    suffix: "%",
+    label: "Proyectos entregados",
+    description: "Cumplimos lo que prometemos.",
+  },
+  {
+    value: 1,
+    suffix: "+",
+    label: "Años de experiencia",
+    description: "Desarrollo de sistemas reales.",
+  },
+];
+
+---
+
+<section data-motion-section id="trayectoria" class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 text-white">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
+
+  <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="mb-4 inline-flex rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-2 text-xs uppercase tracking-[0.16em] text-pink-200">
+          Nuestra trayectoria
+        </p>
+        <h2 class="font-sora text-4xl font-semibold leading-tight sm:text-5xl">
+          Resultados que
+          <span class="block text-pink-500">hablan por si mismos.</span>
+        </h2>
+        <p class="mt-5 max-w-xl font-jakarta text-lg text-gray-300">
+          Mas alla del codigo, construimos soluciones que impulsan el crecimiento real de nuestros clientes.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {stats.map((item) => (
+          <article class="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm">
+            <p class="font-sora text-5xl font-semibold text-cyan-300">
+              <span data-counter data-target={item.value}>0</span>{item.suffix}
+            </p>
+            <p class="mt-2 font-jakarta text-xs uppercase tracking-[0.12em] text-gray-200">{item.label}</p>
+            <p class="mt-4 font-jakarta text-sm text-gray-400">{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const section = document.getElementById("trayectoria");
+  if (section) {
+    const counters = Array.from(section.querySelectorAll<HTMLElement>("[data-counter]"));
+
+    const runCounters = () => {
+      counters.forEach((counter) => {
+        const target = Number(counter.dataset.target || "0");
+        counter.textContent = "0";
+        const startTime = performance.now();
+        const duration = 1300;
+
+        const step = (now: number) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          counter.textContent = String(Math.round(target * eased));
+          if (progress < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) runCounters();
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(section);
+  }
+</script>

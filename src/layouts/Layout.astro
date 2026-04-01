@@ -42,13 +42,13 @@ const { title = 'Empulse - Desarrollo de Software y Páginas Web Profesionales e
     <!-- Twitter Card optimizado -->  
     <meta name="twitter:card" content="summary_large_image" />  
     <meta name="twitter:title" content={title} />  
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={"/logo.svg"} />  
     <meta name="twitter:site" content="@empulse_site" />
     <meta name="twitter:creator" content="@empulse_site" />
 
 
     <!-- Preload recursos críticos -->  
-    <link rel="preload" href="/src/styles/global.css" as="style" />  
     <link rel="preload" href="/logo.svg" as="image" />
 
     <!-- Datos estructurados mejorados -->
@@ -189,9 +189,6 @@ const { title = 'Empulse - Desarrollo de Software y Páginas Web Profesionales e
       })}
     </script>
 
-    <!-- Carga de CSS principal -->  
-    <link rel="stylesheet" href="/src/styles/global.css" />
-    
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json" />  
   </head>  

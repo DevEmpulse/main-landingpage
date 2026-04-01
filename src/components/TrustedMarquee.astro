@@ -1,0 +1,37 @@
+---
+const trustedClients = [
+  "RAMSER SAS",
+  "tuvisatuviaje",
+  "alleefrance",
+  "SantiagoHome",
+];
+---
+
+<section data-motion-section class="relative z-20 -mt-14 border-y border-white/8 bg-[#0b0d1a]/80 py-4 text-white sm:-mt-16">
+  <div class="mx-auto flex w-full max-w-[1400px] items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-20">
+    <span class="absolute left-4 text-xs text-gray-400 sm:left-6 lg:left-20">Confian en Empulse</span>
+    <div class="marquee-track" aria-label="Clientes de referencia">
+      {trustedClients.map((client) => (
+        <span class="client-chip">{client}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2.6rem;
+  }
+
+  .client-chip {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.76);
+    letter-spacing: 0.01em;
+  }
+</style>

@@ -1,238 +1,88 @@
 ---
-import { Code, Zap, Users, Cog, Globe, Headphones, Rocket, Shield } from '@lucide/astro';
-
 const services = [
   {
-    icon: Code,
-    props: { class: 'w-12 h-12 text-pink-600' },
-    title: 'Desarrollo de Software',
-    subtitle: 'Web & mobile a medida',
-    description: 'Aplicaciones web y móviles personalizadas que se adaptan 100% a tu negocio y procesos específicos. Creamos soluciones únicas que evolucionan con tu empresa.',
-    features: ['Aplicaciones web responsivas', 'Apps móviles nativas', 'Integración con sistemas existentes', 'Escalabilidad garantizada']
+    title: "Landing Pages de Alta Conversión",
+    description:
+      "Estructura orientada a ventas, copy estratégico y llamadas a la acción claras para transformar visitas en consultas.",
+    features: ["Propuesta de valor clara", "CTA multiples", "SEO técnico base"],
   },
   {
-    icon: Globe,
-    props: { class: 'w-12 h-12 text-blue-500' },
-    title: 'Páginas Web Profesionales',
-    subtitle: 'Diseños enfocados en conversión',
-    description: 'Diseños modernos y profesionales enfocados en conversión y generación de clientes. Optimizamos cada elemento para maximizar el retorno de inversión.',
-    features: ['Diseño UX/UI optimizado', 'SEO y posicionamiento']
+    title: "Software a Medida",
+    description:
+      "Sistemas internos y plataformas web pensadas para tu flujo real de trabajo, sin procesos forzados.",
+    features: ["Arquitectura escalable", "Integraciones", "Paneles de gestion"],
   },
   {
-    icon: Zap,
-    props: { class: 'w-12 h-12 text-yellow-500' },
-    title: 'Automatización de Procesos',
-    subtitle: 'Eliminamos tareas manuales',
-    description: 'Convertimos tus tareas repetitivas en sistemas automáticos que ahorran tiempo, reducen errores operativos y liberan recursos para actividades estratégicas.',
-    features: ['Workflows automatizados', 'Reducción de errores', 'Ahorro de tiempo', 'Procesos optimizados']
+    title: "Automatizacion de Procesos",
+    description:
+      "Reducimos tareas repetitivas y errores operativos para que tu equipo dedique tiempo a crecimiento y ventas.",
+    features: ["Ahorro de tiempo", "Menos errores", "Más trazabilidad"],
   },
   {
-    icon: Headphones,
-    props: { class: 'w-12 h-12 text-teal-500' },
-    title: 'Soporte Especializado',
-    subtitle: 'Asistencia técnica rápida',
-    description: 'Asistencia técnica rápida y mejora continua. Estamos disponibles para resolver problemas, implementar mejoras y mantener tu tecnología funcionando al 100%.',
-    features: ['Soporte 24/7', 'Mantenimiento preventivo', 'Actualizaciones continuas', 'Capacitación del equipo']
-  }
+    title: "Soporte y Evolucion",
+    description:
+      "No solo lanzamos: acompanamos mejoras continuas, monitoreo y soporte para sostener resultados.",
+    features: ["Ajustes iterativos", "Soporte tecnico", "Roadmap de mejora"],
+  },
 ];
-
-const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios';
 ---
 
-<section id="servicios" class="relative py-20 bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden">
-  <!-- Marco sutil -->
+<script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": services.map((s) => ({
+      "@type": "Service",
+      name: s.title,
+      description: s.description,
+      provider: {
+        "@type": "Organization",
+        name: "Empulse",
+        url: "https://empulse.site",
+      },
+      areaServed: { "@type": "Country", name: "Argentina" },
+      serviceType: s.title,
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: s.title,
+        itemListElement: s.features.map((feature) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: feature },
+        })),
+      },
+    })),
+  })}
+</script>
+
+<section data-motion-section id="servicios" class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 text-white">
   <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
 
-  <!-- Fondo con efecto de partículas -->
-  <div class="absolute inset-0 opacity-20">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.1),transparent_50%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(20,184,166,0.1),transparent_50%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_40%_40%,rgba(251,191,36,0.1),transparent_50%)]"></div>
-  </div>
-
-  <!-- JSON-LD datos estructurados de servicios mejorados -->
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": services.map(s => ({
-        "@type": "Service",
-        "name": s.title,
-        "description": s.description,
-        "provider": {
-          "@type": "Organization",
-          "name": "Empulse",
-          "url": "https://empulse.site",
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "AR",
-            "addressRegion": "Argentina"
-          }
-        },
-        "areaServed": {
-          "@type": "Country",
-          "name": "Argentina"
-        },
-        "serviceType": s.title,
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": s.title,
-          "itemListElement": s.features.map(feature => ({
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": feature
-            }
-          }))
-        }
-      }))
-    })}
-  </script>
-
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="text-center mb-16" id="services-title">
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-        ¿Cómo te <span class="text-pink-600">ayudamos</span>?
+  <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
+    <div class="mb-14 max-w-3xl">
+      <p class="mb-3 font-jakarta text-xs uppercase tracking-[0.18em] text-pink-300">Servicios</p>
+      <h2 class="font-sora text-4xl font-semibold leading-tight sm:text-5xl">
+        Diseño y desarrollo con foco en resultado
       </h2>
-      <p class="text-xl text-gray-300 max-w-4xl mx-auto font-opensans leading-relaxed">
-        En <span class="text-pink-600 font-semibold">Empulse</span> diseñamos e implementamos soluciones tecnológicas a medida que eliminan cuellos de botella, optimizan la operación y potencian el crecimiento.
+      <p class="mt-5 font-jakarta text-lg text-gray-300">
+        No vendemos plantillas: armamos la solucion exacta para tu negocio, con UX clara, velocidad y conversion.
       </p>
     </div>
 
-         <div class="grid md:grid-cols-2 gap-4 md:gap-8 mb-16">
-      {services.map(({ icon: Icon, props, title, subtitle, description, features }, index) => (
-                 <div 
-           class="service-card group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-4 md:p-8 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 transform hover:-translate-y-3 hover:scale-105"
-           id={`service-card-${index}`}
-         >
-           <div class="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
-             <div class="transform transition-transform duration-300 group-hover:scale-110">
-               <Icon {...props} class={`${props.class} transition-all duration-300 group-hover:drop-shadow-lg`} />
-             </div>
-             <div class="flex-1">
-               <h3 class="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">{title}</h3>
-               <p class="text-pink-400 font-medium text-xs md:text-sm mb-2 md:mb-3 font-opensans">{subtitle}</p>
-             </div>
-           </div>
-           
-           <p class="text-gray-300 leading-relaxed font-opensans mb-4 md:mb-6 text-sm md:text-base">{description}</p>
-           
-           <div class="space-y-2">
-             <h4 class="text-white font-semibold text-xs md:text-sm mb-2 md:mb-3">Incluye:</h4>
-             <ul class="space-y-1 md:space-y-2">
-               {features.map(feature => (
-                 <li class="flex items-center gap-2 text-gray-300 text-xs md:text-sm font-opensans">
-                   <div class="w-1 h-1 md:w-1.5 md:h-1.5 bg-pink-500 rounded-full flex-shrink-0"></div>
-                   {feature}
-                 </li>
-               ))}
-             </ul>
-           </div>
-          
-          <!-- Efecto de brillo en hover -->
-          <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-        </div>
+    <div class="grid gap-4 md:grid-cols-2">
+      {services.map((service) => (
+        <article class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors duration-200 hover:border-pink-500/40">
+          <h3 class="font-sora text-2xl font-semibold text-white">{service.title}</h3>
+          <p class="mt-3 font-jakarta text-gray-300">{service.description}</p>
+          <ul class="mt-4 space-y-2 font-jakarta text-sm text-gray-200">
+            {service.features.map((feature) => (
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-pink-400"></span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </article>
       ))}
-    </div>
-
-    <!-- Sección adicional de beneficios -->
-    <div class="bg-gradient-to-r from-gray-800/30 to-gray-900/30 backdrop-blur-sm rounded-2xl p-8 mb-12 border border-gray-700/50">
-      <div class="grid grid-cols-3 gap-4 md:gap-8">
-        <div class="text-center">
-          <div class="w-12 h-12 md:w-16 md:h-16 bg-pink-600/20 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
-            <Rocket class="w-6 h-6 md:w-8 md:h-8 text-pink-500" />
-          </div>
-          <h3 class="text-sm md:text-lg font-bold text-white mb-1 md:mb-2">Resultados Rápidos</h3>
-          <p class="text-gray-300 text-xs md:text-sm font-opensans">Implementación en semanas, no meses</p>
-        </div>
-        <div class="text-center">
-          <div class="w-12 h-12 md:w-16 md:h-16 bg-teal-600/20 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
-            <Shield class="w-6 h-6 md:w-8 md:h-8 text-teal-500" />
-          </div>
-          <h3 class="text-sm md:text-lg font-bold text-white mb-1 md:mb-2">Garantía Total</h3>
-          <p class="text-gray-300 text-xs md:text-sm font-opensans">Soporte y mantenimiento incluidos</p>
-        </div>
-        <div class="text-center">
-          <div class="w-12 h-12 md:w-16 md:h-16 bg-yellow-600/20 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-4">
-            <Users class="w-6 h-6 md:w-8 md:h-8 text-yellow-500" />
-          </div>
-          <h3 class="text-sm md:text-lg font-bold text-white mb-1 md:mb-2">Equipo Experto</h3>
-          <p class="text-gray-300 text-xs md:text-sm font-opensans">Desarrolladores certificados</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center" id="services-cta">
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] group"
-      >
-        <span>SOLICITAR COTIZACIÓN</span>
-        <svg 
-          class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
-        </svg>
-      </a>
     </div>
   </div>
 </section>
-
-<script>
-
-  // Animaciones simples sin GSAP para asegurar que funcionen
-  document.addEventListener('DOMContentLoaded', () => {
-    // Animación simple para las tarjetas
-    const cards = document.querySelectorAll('.service-card');
-    cards.forEach((card, index) => {
-      const cardElement = card as HTMLElement;
-      setTimeout(() => {
-        cardElement.style.transform = 'translateY(0)';
-        cardElement.style.opacity = '1';
-      }, index * 100);
-    });
-  });
-
-  // Efectos de hover simples
-  document.querySelectorAll('.service-card').forEach(card => {
-    const cardElement = card as HTMLElement;
-    cardElement.addEventListener('mouseenter', () => {
-      cardElement.style.transform = 'translateY(-10px) scale(1.05)';
-    });
-
-    cardElement.addEventListener('mouseleave', () => {
-      cardElement.style.transform = 'translateY(0) scale(1)';
-    });
-  });
-</script>
-
-<style>
-  .service-card {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: left 0.5s;
-  }
-
-  .service-card:hover::before {
-    left: 100%;
-  }
-
-  .service-card:hover {
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(236,72,153,0.2);
-  }
-</style>

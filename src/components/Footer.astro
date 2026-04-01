@@ -1,64 +1,70 @@
 ---
+import { Instagram, Mail, Phone, Clock3 } from "@lucide/astro";
+
 const currentYear = new Date().getFullYear();
+const whatsappUrl =
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20saber%20mas%20sobre%20sus%20servicios";
+const instagramUrl = "https://www.instagram.com/empulse.site";
 ---
 
-<footer class="bg-gray-900 text-white py-12">
-  <div class="container mx-auto px-4">
-    <div class="grid md:grid-cols-4 gap-8">
-      <!-- Logo and Description -->
+<footer class="relative overflow-hidden bg-gradient-to-br from-gray-950 via-black to-gray-900 py-14 text-white">
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-20">
+    <div class="grid gap-10 md:grid-cols-4">
       <div class="md:col-span-2">
-        <a href="#home">
-          <div class="flex items-center space-x-2 mb-4">
-          <img
-            src="logo.svg"
-            alt="Empulse Logo"
-            width="40"
-            height="40"
-            class="w-10 h-10"
-          />
-          <span class="text-2xl font-bold">Empulse</span>
-        </div>
+        <a href="#home" class="mb-5 inline-flex items-center gap-2">
+          <img src="/logo.svg" alt="Empulse Logo" width="40" height="40" class="h-10 w-10" />
+          <span class="font-sora text-2xl font-semibold">Empulse</span>
         </a>
-        <p class="text-gray-300 leading-relaxed mb-6 max-w-md">
-          Transformamos tu negocio con soluciones tecnológicas innovadoras. Software a medida,
-          automatización y proyectos individuales para impulsar tu crecimiento.
+
+        <p class="max-w-md font-jakarta leading-relaxed text-gray-300">
+          Transformamos negocios con software a medida, automatizacion y landings enfocadas en conversion.
         </p>
-        <div class="flex space-x-4">
+
+        <div class="mt-6 flex flex-wrap gap-3">
           <a
-            href="https://wa.me/543841453879?text=Hola,%20me%20interesa%20saber%20más%20sobre%20tus%20servicios"
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-green-700 hover:bg-green-800 text-gray-200 px-4 py-2 rounded-lg transition-colors"
+            class="inline-flex items-center gap-2 rounded-full bg-emerald-600/20 px-4 py-2 text-sm font-semibold text-emerald-300 ring-1 ring-emerald-400/30 transition-colors hover:bg-emerald-600/30"
           >
+            <img src="/whatsapp-icon.svg" alt="" aria-hidden="true" class="h-4 w-4" loading="lazy" decoding="async" />
             WhatsApp
+          </a>
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full bg-pink-600/20 px-4 py-2 text-sm font-semibold text-pink-300 ring-1 ring-pink-400/30 transition-colors hover:bg-pink-600/30"
+          >
+            <Instagram class="h-4 w-4" />
+            Instagram
           </a>
         </div>
       </div>
 
-      <!-- Services -->
       <div>
-        <h3 class="text-lg font-semibold mb-4">Servicios</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Desarrollo de Software</a></li>
-          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Automatización</a></li>
-          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Proyectos Individuales</a></li>
-          <li><a href="#servicios" class="hover:text-pink-400 transition-colors">Integración de Sistemas</a></li>
+        <h3 class="mb-4 font-sora text-lg font-semibold">Servicios</h3>
+        <ul class="space-y-2 font-jakarta text-gray-300">
+          <li><a href="#servicios" class="transition-colors hover:text-pink-400">Landing pages</a></li>
+          <li><a href="#servicios" class="transition-colors hover:text-pink-400">Software a medida</a></li>
+          <li><a href="#servicios" class="transition-colors hover:text-pink-400">Automatizacion</a></li>
+          <li><a href="#servicios" class="transition-colors hover:text-pink-400">Soporte y evolucion</a></li>
         </ul>
       </div>
 
-      <!-- Contact -->
       <div>
-        <h3 class="text-lg font-semibold mb-4">Contacto</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li>empulse.dev@gmail.com</li>
-          <li>+54 3841 453879</li>
-          <li>Lun - Vie: 9:00 - 18:00</li>
-          <li>Sáb y Dom: 9:00 - 14:00</li>
+        <h3 class="mb-4 font-sora text-lg font-semibold">Contacto</h3>
+        <ul class="space-y-3 font-jakarta text-sm text-gray-300">
+          <li class="flex items-center gap-2"><Mail class="h-4 w-4 text-gray-400" /> empulse.dev@gmail.com</li>
+          <li class="flex items-center gap-2"><Phone class="h-4 w-4 text-gray-400" /> +54 3841 453879</li>
+          <li class="flex items-center gap-2"><Clock3 class="h-4 w-4 text-gray-400" /> Lun - Vie: 9:00 - 18:00</li>
         </ul>
       </div>
     </div>
 
-    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+    <div class="mt-10 border-t border-white/10 pt-6 text-center font-jakarta text-sm text-gray-400">
       <p>&copy; {currentYear} Empulse. Todos los derechos reservados.</p>
     </div>
   </div>
