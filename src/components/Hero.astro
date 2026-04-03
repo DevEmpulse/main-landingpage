@@ -1,156 +1,77 @@
 ---
-import LogoDots from "../components/LogoDots.astro";
 const whatsappUrl =
-  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20desarrollo%20de%20software";
+  "https://wa.me/543841453879?text=Hola,%20quiero%20una%20landing%20page%20que%20me%20ayude%20a%20captar%20m%C3%A1s%20clientes";
 ---
 
 <section
   id="home"
-  class="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white overflow-hidden "
+  data-motion-section
+  class="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white"
 >
-  {/* Marco sutil */}
+  <div class="pointer-events-none absolute inset-0">
+    <div class="absolute inset-0 hero-dot-bg opacity-35"></div>
+    <img
+      src="/logo.svg"
+      alt="Empulse"
+      width="620"
+      height="620"
+      class="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 opacity-[0.08] sm:h-[620px] sm:w-[620px]"
+      loading="eager"
+      decoding="async"
+    />
+    <div class="absolute -top-28 left-0 h-80 w-80 rounded-full bg-pink-500/25 blur-3xl"></div>
+    <div class="absolute right-0 top-36 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-amber-300/15 blur-3xl"></div>
+  </div>
+
   <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
 
-  {/* Fondo con logo de puntos */}
-  <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
-    <div class="relative w-[80vw] max-w-[520px] sm:w-[56vw] sm:max-w-[520px] aspect-[4/5]">
-      <div class="absolute inset-0 opacity-70 blur-[0.5px]">
-        <LogoDots src="/logo.svg" density={8} starChance={0.002} />
-      </div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_60%)]"></div>
-    </div>
-  </div>
-
-{/* Contenido */}
-<div class="container px-4 sm:px-6 lg:px-20 relative z-10 mt-20 sm:mt-28 lg:mt-36">
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-0">
-    {/* IZQUIERDA */}
-    <div class="col-span-12 lg:col-span-6 xl:col-span-5">
-      <h1 class="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight font-poppins">
-        Diseñamos y desarrollamos
-        <br><span class="text-pink-600 italic font-playfair">soluciones IT</span>
-      </h1>
-      <p class="mt-4 sm:mt-5 text-ls sm:text-lg md:text-xl text-gray-300 max-w-[46ch] font-poppins">
-        Para empresas y personas que quieren crecer, digitalizarse y optimizar su
-        operación
+  <div class="container relative z-10 mx-auto px-4 pb-20 pt-44 sm:px-6 sm:pt-48 lg:px-20 lg:pt-52">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-5 inline-flex rounded-full border border-pink-400/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-200">
+        Soluciones IT a medida para negocios que quieren escalar
       </p>
-    </div>
-  </div>
-</div>
 
+      <h1 class="font-sora text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+        Tu negocio necesita una web que
+        <span class="block text-pink-500">convierta visitas en clientes</span>
+      </h1>
 
-  {/* DERECHA */}
-  <div class="absolute right-4 bottom-20 sm:right-10 sm:bottom-10 lg:right-20 lg:bottom-20 z-20 text-right">
-    <p class="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-4 sm:mb-6 font-poppins leading-relaxed" id="animated-text">
-      Páginas web profesionales
-    </p>
+      <p class="mx-auto mt-6 max-w-2xl font-jakarta text-base leading-relaxed text-gray-300 sm:text-xl">
+        Diseñamos landing pages, sistemas y automatizaciones con enfoque comercial real:
+        claridad, velocidad y conversion.
+      </p>
 
-    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end items-end sm:items-center">
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-pink-600 hover:bg-pink-700 text-white px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] inline-flex items-center justify-center gap-2 group shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset]"
-        aria-label="Contactar para páginas web profesionales"
-      >
-        <span>Comencemos</span>
-        <svg
-          class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-7 py-3 font-jakarta font-semibold text-white transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M7 17l9.2-9.2M17 17V7H7"
-          />
-        </svg>
-      </a>
-
-      <a
-        href="#proyectos"
-        class="border-2 border-white/80 text-white hover:bg-white hover:text-black px-5 sm:px-8 py-2.5 sm:py-4 text-sm sm:text-lg font-semibold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
-        aria-label="Ver proyectos de desarrollo de software"
-      >
-        <span>Ver Proyectos Realizados</span>
-        <svg
-          class="w-4 h-4 sm:w-5 sm:h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+          Quiero una landing que venda
+          <span>↗</span>
+        </a>
+        <a
+          href="#proyectos"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3 font-jakarta font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </a>
+          Ver proyectos
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-{/* Indicador scroll */}
-<div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:block">
-  <div class="w-6 h-10 border-2 border-white/70 rounded-full flex justify-center">
-    <div class="w-1 h-3 bg-white/80 rounded-full mt-2 animate-pulse"></div>
-  </div>
-</div>
-
-
 <script>
-  import "../scripts/gsapHeroAnimations.ts";
-
-  // Animación de texto cambiando frases optimizadas para SEO
-  function animateText() {
-    const textElement = document.getElementById('animated-text');
-    if (!textElement) return;
-
-    const phrases = [
-      "Desarrollo de Software a Medida",
-      "Páginas Web Profesionales",
-      "Automatización de Procesos",
-      "Soporte IT Especializado",
-    ];
-    
-    let currentIndex = 0;
-    const displayTime = 2500; // Tiempo que se muestra cada frase (2.5 segundos)
-    const fadeTime = 500; // Tiempo de transición (0.5 segundos)
-    
-    function showNextPhrase() {
-      if (currentIndex >= phrases.length) {
-        currentIndex = 0; // Volver al inicio
-      }
-      
-      const phrase = phrases[currentIndex];
-      
-      // Efecto de fade out
-      textElement!.style.transition = `opacity ${fadeTime}ms ease-out`;
-      textElement!.style.opacity = '0';
-      
-      setTimeout(() => {
-        // Cambiar el texto
-        textElement!.textContent = phrase;
-        
-        // Efecto de fade in
-        textElement!.style.transition = `opacity ${fadeTime}ms ease-in`;
-        textElement!.style.opacity = '1';
-        
-        currentIndex++;
-        
-        // Programar la siguiente frase
-        setTimeout(showNextPhrase, displayTime);
-      }, fadeTime);
-    }
-    
-    // Iniciar la animación después de un delay
-    setTimeout(showNextPhrase, 1000);
-  }
-
-  // Ejecutar la animación cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', animateText);
+  import "../scripts/gsapHeroIntro";
 </script>
+
+<style>
+  .hero-dot-bg {
+    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0 1px, transparent 1.3px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at center, black 12%, transparent 68%);
+  }
+</style>
