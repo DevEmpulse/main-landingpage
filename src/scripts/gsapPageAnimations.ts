@@ -13,7 +13,12 @@ function initPageAnimations() {
       start: "top 85%",
       once: true,
       onEnter: () => {
-        const targets = section.querySelectorAll("h2, h3, p, article, a, li, form, .contact-card");
+        const allTargets = section.querySelectorAll(
+          "h2, h3, p, article, a, li, form, .contact-card"
+        );
+        const targets = Array.from(allTargets).filter(
+          (target) => !target.closest("[data-motion-ignore]")
+        );
         if (!targets.length) return;
 
         gsap.fromTo(
