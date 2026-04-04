@@ -1,63 +1,62 @@
 ---
-import { ExternalLink, Calendar, Code, Globe } from '@lucide/astro';
+import { getImage } from "astro:assets";
+import ProjectsSection from "./ProjectsSection";
 
-const projects = [
+import facturacionImage from "../assets/projects/facturacion.webp";
+import ramserImage from "../assets/projects/Ramser.webp";
+import tuVisaTuViajeImage from "../assets/projects/tuvisatuviaje.webp";
+import alleeFranceImage from "../assets/projects/proyecto-allee-france.webp";
+import gestionTurnosImage from "../assets/projects/gestiondeturnos.webp";
+
+const rawProjects = [
   {
     title: "Sistema de Facturacion",
     subtitle: "Automatizacion completa",
-    description: "Sistema integral para cobro de agua, carga de facturas y resumen diario con comisiones automaticas.",
-    image: "/facturacion.jpg?height=300&width=400",
+    description:
+      "Sistema integral para cobro de agua, carga de facturas y resumen diario con comisiones automaticas.",
+    imageAsset: facturacionImage,
     category: "Automatizacion",
     date: "2025",
     technologies: ["React", "TypeScript", "Tailwind", "IndexedDB"],
-    icon: Code,
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/20",
     problem: "3 h por dia en planillas manuales",
     solution: "Sistema web a medida + lector de codigos",
-    result: "85% menos tiempo operativo"
+    result: "85% menos tiempo operativo",
   },
   {
     title: "Landing Page Ramser S.A.S",
     subtitle: "Presencia digital profesional",
-    description: "Landing para empresa de sanidad ambiental en el N.E.A., con UX enfocada en conversion.",
-    image: "/Ramser.png?height=300&width=400",
+    description:
+      "Landing para empresa de sanidad ambiental en el N.E.A., con UX enfocada en conversion.",
+    imageAsset: ramserImage,
     category: "Landing Page",
     date: "2024",
     technologies: ["Astro", "JavaScript", "Tailwind CSS"],
-    icon: Globe,
-    color: "text-teal-500",
-    bgColor: "bg-teal-500/20",
     problem: "Sin presencia digital",
     solution: "Landing optimizada + formulario/CTA",
-    result: "Leads desde la primera semana"
+    result: "Leads desde la primera semana",
   },
   {
     title: "Landing Page Tu Visa, tu Viaje",
     subtitle: "Presencia digital profesional",
     description: "Landing para empresa de gestion de visas y seguros de viaje.",
-    image: "/tuvisatuviaje.png?height=300&width=400",
+    imageAsset: tuVisaTuViajeImage,
     category: "Landing Page",
     date: "2025",
     technologies: ["Astro", "JavaScript", "Tailwind CSS"],
-    icon: Globe,
-    color: "text-teal-500",
-    bgColor: "bg-teal-500/20",
     problem: "Sin presencia digital",
     solution: "Landing optimizada + formulario/CTA",
-    result: "Mejora de consultas organicas"
+    result: "Mejora de consultas organicas",
+    liveUrl: "https://www.tuvisa-tuviaje.com/",
   },
   {
     title: "Web Allee France",
     subtitle: "Landing para asesoria migratoria",
-    description: "Rediseno visual para marca migratoria, enfocado en confianza, claridad de servicios y conversion por WhatsApp.",
-    image: "/proyecto-allee-france.png",
+    description:
+      "Rediseno visual para marca migratoria, enfocado en confianza, claridad de servicios y conversion por WhatsApp.",
+    imageAsset: alleeFranceImage,
     category: "Landing Page",
     date: "2026",
     technologies: ["Astro", "Tailwind CSS", "SEO/GEO", "UX Copywriting"],
-    icon: Globe,
-    color: "text-indigo-400",
-    bgColor: "bg-indigo-500/20",
     problem: "Mensaje disperso en primer scroll",
     solution: "Hero orientado a propuesta de valor + CTA directos",
     result: "Mayor intencion de contacto",
@@ -67,29 +66,51 @@ const projects = [
     title: "Generador de Turnos",
     subtitle: "Automatizacion completa",
     description: "Sistema de R.R.H.H. para generar y administrar turnos de personal.",
-    image: "/gestiondeturnos.png?height=300&width=400",
+    imageAsset: gestionTurnosImage,
     category: "Automatizacion",
     date: "2025",
     technologies: ["Next", "TypeScript", "Tailwind", "Supabase"],
-    icon: Code,
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/20",
     problem: "Horas diarias para organizar horarios",
     solution: "Sistema web a medida",
-    result: "85% menos tiempo operativo"
+    result: "85% menos tiempo operativo",
   },
-];
+] as const;
 
-const whatsappUrl = "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20mas%20sobre%20sus%20servicios";
+const sizes =
+  "(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) calc(50vw - 3rem), (max-width: 1440px) calc(33vw - 3.5rem), 360px";
 
-function getProjectWhatsAppUrl(projectTitle: string) {
-  const message = `Hola, me interesa una solucion similar al proyecto "${projectTitle}".`;
-  const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/543841453879?text=${encodedMessage}`;
-}
+const projects = await Promise.all(
+  rawProjects.map(async ({ imageAsset, ...project }) => {
+    const optimizedImage = await getImage({
+      src: imageAsset,
+      widths: [320, 480, 640, 800],
+      sizes,
+      format: "webp",
+      quality: "mid",
+    });
+
+    return {
+      ...project,
+      image: {
+        src: optimizedImage.src,
+        srcSet: optimizedImage.srcSet.attribute,
+        sizes,
+        width: Number(optimizedImage.attributes.width),
+        height: Number(optimizedImage.attributes.height),
+      },
+    };
+  }),
+);
+
+const whatsappUrl =
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20mas%20sobre%20sus%20servicios";
 ---
 
-<section data-motion-section id="proyectos" class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 text-white">
+<section
+  data-motion-section
+  id="proyectos"
+  class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 text-white"
+>
   <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
   <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
 
@@ -97,80 +118,54 @@ function getProjectWhatsAppUrl(projectTitle: string) {
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": "Proyectos de desarrollo de software y landing pages",
-      "description": "Casos reales de Empulse para conversion, automatizacion y crecimiento digital",
-      "itemListElement": projects.map((project, index) => ({
+      name: "Proyectos de desarrollo de software y landing pages",
+      description:
+        "Casos reales de Empulse para conversion, automatizacion y crecimiento digital",
+      itemListElement: projects.map((project, index) => ({
         "@type": "ListItem",
-        "position": index + 1,
-        "item": {
+        position: index + 1,
+        item: {
           "@type": "CreativeWork",
-          "name": project.title,
-          "description": project.description,
-          "creator": { "@type": "Organization", "name": "Empulse", "url": "https://empulse.site" },
-          "dateCreated": project.date,
-          "genre": project.category,
-          "keywords": project.technologies.join(", ")
-        }
-      }))
+          name: project.title,
+          description: project.description,
+          creator: {
+            "@type": "Organization",
+            name: "Empulse",
+            url: "https://empulse.site",
+          },
+          dateCreated: project.date,
+          genre: project.category,
+          keywords: project.technologies.join(", "),
+        },
+      })),
     })}
   </script>
 
   <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
     <div class="mb-14 max-w-3xl">
-      <p class="mb-3 font-jakarta text-xs uppercase tracking-[0.18em] text-pink-300">Casos reales</p>
+      <p class="mb-3 font-jakarta text-xs uppercase tracking-[0.18em] text-pink-300">
+        Casos reales
+      </p>
       <h2 class="font-sora text-4xl font-semibold md:text-5xl">
         Proyectos que <span class="text-pink-600">generan impacto</span>
       </h2>
       <p class="mt-4 font-jakarta text-lg text-gray-300">
-        Inspirado en tu mockup: tarjetas mas limpias, foco en lectura rapida y menos ruido visual.
+        Soluciones reales diseñadas para automatizar procesos, mejorar la presencia
+        digital y generar mas oportunidades de negocio.
       </p>
     </div>
 
-    <div class="grid gap-4 md:grid-cols-2">
-      {projects.map((project) => (
-        <article class="rounded-2xl border border-white/10 bg-[#0f0f1c] p-5 md:p-6">
-          <div class="mb-4 flex items-center justify-between">
-            <span class="rounded-full bg-pink-600/15 px-3 py-1 text-xs font-semibold text-pink-300">{project.category}</span>
-            <span class="flex items-center text-xs text-gray-400"><Calendar class="mr-1 h-3.5 w-3.5" />{project.date}</span>
-          </div>
-
-          <div class="relative mb-4 h-44 overflow-hidden rounded-xl border border-white/10">
-            <img src={project.image} alt={project.title} loading="lazy" width="800" height="500" class="h-full w-full object-cover" />
-            <div class={`absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full ${project.bgColor}`}>
-              <project.icon class={`w-6 h-6 ${project.color}`} />
-            </div>
-          </div>
-
-          <h3 class="font-sora text-2xl font-semibold text-white">{project.title}</h3>
-          <p class="mt-1 text-sm font-medium text-pink-400">{project.subtitle}</p>
-          <p class="mt-3 font-jakarta text-sm leading-relaxed text-gray-300">{project.description}</p>
-
-          <div class="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3">
-            <div><p class="text-[10px] uppercase tracking-wider text-gray-500">Problema</p><p class="mt-1 text-xs text-red-300">{project.problem}</p></div>
-            <div><p class="text-[10px] uppercase tracking-wider text-gray-500">Solucion</p><p class="mt-1 text-xs text-blue-300">{project.solution}</p></div>
-            <div><p class="text-[10px] uppercase tracking-wider text-gray-500">Resultado</p><p class="mt-1 text-xs text-green-300">{project.result}</p></div>
-          </div>
-
-          <div class="mt-4 flex flex-wrap gap-2">
-            {project.technologies.map((tech) => (
-              <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-gray-300">{tech}</span>
-            ))}
-          </div>
-
-          <div class="mt-5 flex items-center gap-4">
-            <a href={getProjectWhatsAppUrl(project.title)} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-pink-400 transition-colors hover:text-pink-300">
-              <span>Quiero una solucion similar</span><ExternalLink class="ml-1 h-4 w-4" />
-            </a>
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold text-cyan-300 transition-colors hover:text-cyan-200">Ver sitio</a>
-            )}
-          </div>
-        </article>
-      ))}
+    <div data-motion-ignore>
+      <ProjectsSection client:visible projects={projects} />
     </div>
 
     <div class="mt-12 text-center" id="projects-cta">
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full bg-pink-600 px-8 py-3 font-semibold text-white transition-transform duration-200 hover:scale-[1.02]">
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-full bg-pink-600 px-8 py-3 font-semibold text-white transition-transform duration-200 hover:scale-[1.02]"
+      >
         DISCUTIR MI PROYECTO <span>↗</span>
       </a>
     </div>

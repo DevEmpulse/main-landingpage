@@ -6,7 +6,7 @@ const whatsappUrl =
 <section
   id="home"
   data-motion-section
-  class="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white"
+  class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white hero-full"
 >
   <div class="pointer-events-none absolute inset-0">
     <div class="absolute inset-0 hero-dot-bg opacity-35"></div>
@@ -69,6 +69,17 @@ const whatsappUrl =
 </script>
 
 <style>
+  /*
+   * El marquee mide ~68px de alto (py-4 = 32px + texto ~36px).
+   * El hero ocupa el resto del viewport: 100svh - 68px.
+   * Así el marquee queda completamente visible sin scroll.
+   * Fallback 100vh para browsers sin soporte svh.
+   */
+  .hero-full {
+    min-height: calc(100vh - 68px);
+    min-height: calc(100svh - 68px);
+  }
+
   .hero-dot-bg {
     background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0 1px, transparent 1.3px);
     background-size: 26px 26px;

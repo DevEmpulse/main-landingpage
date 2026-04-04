@@ -7,31 +7,117 @@ const trustedClients = [
 ];
 ---
 
-<section data-motion-section class="relative z-20 -mt-14 border-y border-white/8 bg-[#0b0d1a]/80 py-4 text-white sm:-mt-16">
-  <div class="mx-auto flex w-full max-w-[1400px] items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-20">
-    <span class="absolute left-4 text-xs text-gray-400 sm:left-6 lg:left-20">Confian en Empulse</span>
-    <div class="marquee-track" aria-label="Clientes de referencia">
-      {trustedClients.map((client) => (
-        <span class="client-chip">{client}</span>
-      ))}
+<section
+  data-motion-section
+  class="relative z-20 border-y border-white/8 bg-[#0b0d1a] py-4 text-white"
+>
+  <div class="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-20">
+    <p class="mb-3 text-center text-xs tracking-[0.12em] text-gray-400 uppercase">
+      Confian en Empulse
+    </p>
+
+    <div class="hidden items-center justify-center md:flex">
+      <div class="desktop-track" aria-label="Clientes de referencia">
+        {trustedClients.map((client) => (
+          <span class="client-chip">{client}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="mobile-marquee md:hidden" aria-label="Clientes de referencia">
+      <div class="mobile-track">
+        {trustedClients.map((client) => (
+          <span class="mobile-chip">{client}</span>
+        ))}
+        {trustedClients.map((client) => (
+          <span class="mobile-chip" aria-hidden="true">{client}</span>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .marquee-track {
+  .desktop-track {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 2.6rem;
+    gap: 2.75rem;
+  }
+
+  .client-chip,
+  .mobile-chip {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
   }
 
   .client-chip {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 0.98rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.76);
-    letter-spacing: 0.01em;
+    font-size: 1rem;
+  }
+
+  .mobile-marquee {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    padding: 0.25rem 0;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 12%,
+      black 88%,
+      transparent 100%
+    );
+  }
+
+  .mobile-track {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    width: max-content;
+    animation: trusted-scroll 16s linear infinite;
+    will-change: transform;
+  }
+
+  .mobile-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    position: relative;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .mobile-chip::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    margin-left: 1.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    flex: 0 0 auto;
+  }
+
+  @keyframes trusted-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 0.8rem)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-track {
+      animation: none;
+    }
   }
 </style>
