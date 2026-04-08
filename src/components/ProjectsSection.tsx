@@ -193,9 +193,6 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
       <div ref={gridRef} style={gridStyle}>
         {visibleProjects.map((project, index) => {
           const categoryAccent = getCategoryAccent(project.category);
-          const visibleTechnologies = project.technologies.slice(0, 3);
-          const hiddenTechnologies =
-            project.technologies.length - visibleTechnologies.length;
           const imageFailed = failedImages[project.title] === true;
           const isPriorityImage = index === 0;
 
@@ -459,7 +456,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                     marginBottom: "14px",
                   }}
                 >
-                  {visibleTechnologies.map((tech) => (
+                  {project.technologies.map((tech) => (
                     <span
                       key={`${project.title}-${tech}`}
                       style={{
@@ -475,21 +472,6 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                       {tech}
                     </span>
                   ))}
-                  {hiddenTechnologies > 0 && (
-                    <span
-                      style={{
-                        padding: "5px 10px",
-                        borderRadius: "999px",
-                        background: "rgba(255,255,255,0.06)",
-                        color: "rgba(255,255,255,0.5)",
-                        fontSize: "11px",
-                        lineHeight: 1,
-                        fontWeight: 600,
-                      }}
-                    >
-                      +{hiddenTechnologies}
-                    </span>
-                  )}
                 </div>
 
                 {/* Actions pinned to bottom */}
