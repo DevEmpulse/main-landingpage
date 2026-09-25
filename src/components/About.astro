@@ -1,0 +1,73 @@
+---
+import SectionIndex from "./SectionIndex.astro";
+import LogoDots from "./LogoDots.astro";
+import Stats from "./Stats.astro";
+
+const pillars = [
+  {
+    tag: "(El Problema)",
+    text: "Horas diarias en planillas manuales, procesos forzados y una presencia digital que no genera consultas.",
+  },
+  {
+    tag: "(+La Solución)",
+    text: "Sistemas internos y plataformas web pensadas para tu flujo real de trabajo, con UX clara y velocidad.",
+  },
+  {
+    tag: "(=El Resultado)",
+    text: "Menos tareas repetitivas y errores operativos, para que tu equipo dedique tiempo a crecimiento y ventas.",
+  },
+];
+---
+
+<section id="nosotros" class="relative bg-ink py-20 text-bone md:py-28">
+  <div class="gutter">
+    <SectionIndex num="01" label="Nosotros" />
+
+    <p
+      data-split
+      class="mt-12 max-w-[22ch] text-[clamp(2rem,4.6vw,4.25rem)] font-extrabold leading-[1.02] tracking-[-0.035em] md:mt-16"
+    >
+      No vendemos plantillas. Armamos la solución exacta para tu negocio, con foco en resultados<span
+        class="text-accent">®</span
+      >
+    </p>
+
+    <div class="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-12">
+      <div
+        data-reveal
+        class="about-visual relative overflow-hidden rounded-[1.75rem] border hairline bg-ink-2 lg:col-span-7"
+      >
+        <div class="absolute inset-0">
+          <LogoDots src="/logo.svg" density={7} />
+        </div>
+        <p class="meta absolute bottom-4 left-5 text-white/55">Empulse® — Marca</p>
+        <p class="meta absolute bottom-4 right-5 text-white/55">Software & Web</p>
+      </div>
+
+      <div class="flex flex-col gap-10 lg:col-span-5">
+        <div class="grid gap-8 sm:grid-cols-3 lg:grid-cols-1">
+          {pillars.map((pillar) => (
+            <div data-reveal>
+              <p class="meta mb-2 text-accent">{pillar.tag}</p>
+              <p class="text-base leading-relaxed text-white/70">{pillar.text}</p>
+            </div>
+          ))}
+        </div>
+        <Stats />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-visual {
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (min-width: 1024px) {
+    .about-visual {
+      aspect-ratio: auto;
+      min-height: 560px;
+    }
+  }
+</style>

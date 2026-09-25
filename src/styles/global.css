@@ -1,40 +1,332 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+/*
+ * Design tokens. Fonts are loaded via <link> in Layout.astro:
+ * - Archivo Black: giant display type
+ * - JetBrains Mono: meta labels
+ * - Plus Jakarta Sans: body copy (brand font)
+ */
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Archivo Black", "Arial Black", "Helvetica Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-ink: #09090b;
+  --color-ink-2: #101014;
+  --color-ink-3: #16161c;
+  --color-bone: #f3efe9;
+  --color-accent: #ec4899;
+  --color-accent-strong: #ff1091;
+  --color-line: rgb(255 255 255 / 0.12);
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-body {
-  font-family: "Plus Jakarta Sans", "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, sans-serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .font-jakarta {
+    font-family: var(--font-sans);
+  }
 }
 
-/* Clases de fuentes personalizadas */
+/* Component classes live in the components layer so Tailwind utilities can override them. */
+@layer components {
+  /* ---------- Typography helpers ---------- */
 
-.font-opensans {
-  font-family: "Open Sans", sans-serif;
+  .display-tight {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.045em;
+    line-height: 0.82;
+    text-transform: uppercase;
+  }
+
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Links & buttons ---------- */
+
+  /* Underline that wipes in from the left on hover and out to the right. */
+  .link-u {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  .link-u::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.15em;
+    height: 1px;
+    background: currentColor;
+    transform-origin: left;
+    transition: transform 450ms var(--ease-out-strong);
+  }
+
+  .link-u--static::after {
+    transform: scaleX(1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .link-u:hover::after {
+      animation: link-wipe 650ms var(--ease-out-strong);
+    }
+  }
+
+  @keyframes link-wipe {
+    0% {
+      transform: scaleX(1);
+      transform-origin: right;
+    }
+    45% {
+      transform: scaleX(0);
+      transform-origin: right;
+    }
+    46% {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  .arrow-nudge {
+    display: inline-block;
+    transition: transform 250ms var(--ease-out-strong);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    a:hover > .arrow-nudge,
+    button:hover > .arrow-nudge {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.9rem 1.6rem;
+    font-weight: 600;
+    line-height: 1;
+    transition:
+      transform 160ms ease-out,
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease;
+    touch-action: manipulation;
+  }
+
+  .btn-pill:active {
+    transform: scale(0.97);
+  }
+
+  .btn-accent {
+    background-color: #db2777;
+    color: #fff;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-accent:hover {
+      background-color: var(--color-accent);
+    }
+  }
+
+  .btn-ghost {
+    border: 1px solid rgb(255 255 255 / 0.28);
+    color: var(--color-bone);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .btn-ghost:hover {
+      background-color: var(--color-bone);
+      color: var(--color-ink);
+    }
+  }
+
+  /* ---------- Layout helpers ---------- */
+
+  .gutter {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .gutter {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gutter {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  .hairline {
+    border-color: var(--color-line);
+  }
+
+  /* Film grain overlay used on dark hero-like surfaces. */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 1;
+  }
+
+  /* ---------- Marquee (constant motion: linear) ---------- */
+
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .marquee__track {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    min-width: 100%;
+    animation: marquee-x var(--marquee-duration, 30s) linear infinite;
+    animation-direction: var(--marquee-direction, normal);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .marquee--pausable:hover .marquee__track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes marquee-x {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+  /* ---------- Projects: sticky stacked cards ---------- */
+
+  .project-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .project-img {
+    transition: transform 900ms var(--ease-out-strong);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project-media:hover .project-img {
+      transform: scale(1.03);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .project-stack {
+      gap: 12vh;
+    }
+
+    .project-media {
+      aspect-ratio: auto;
+      height: clamp(240px, 44vh, 560px);
+    }
+
+    .project-card {
+      transform-origin: 50% 0%;
+      will-change: transform;
+    }
+  }
+
+  /* Sticky stacking only when motion is welcome (pinning is disabled otherwise). */
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .project-wrap {
+      position: sticky;
+      top: calc(5.5rem + var(--i, 0) * 14px);
+    }
+  }
 }
 
-.font-poppins {
-  font-family: "Sora", sans-serif;
+/* ---------- Motion guards ---------- */
+
+/*
+ * Elements marked [data-intro] are hidden only when JS is available so the
+ * GSAP intro can reveal them without a flash. A failsafe class added after
+ * a timeout makes sure content never stays hidden if scripts fail.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html.js:not(.motion-failsafe) [data-intro] {
+    visibility: hidden;
+  }
 }
 
-.font-playfair {
-  font-family: "Playfair Display", serif;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.font-sora {
-  font-family: "Sora", sans-serif;
-}
+  .marquee__track {
+    animation: none;
+  }
 
-.font-jakarta {
-  font-family: "Plus Jakarta Sans", sans-serif;
-}
-
-.font-manrope {
-  font-family: "Manrope", sans-serif;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

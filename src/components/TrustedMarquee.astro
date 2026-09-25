@@ -5,119 +5,59 @@ const trustedClients = [
   "alleefrance",
   "SantiagoHome",
 ];
+
+const stack = [
+  { glyph: "◆", name: "React" },
+  { glyph: "✦", name: "TypeScript" },
+  { glyph: "✳", name: "Astro" },
+  { glyph: "◆", name: "Next.js" },
+  { glyph: "✦", name: "Tailwind CSS" },
+  { glyph: "✳", name: "Supabase" },
+  { glyph: "◆", name: "GSAP" },
+  { glyph: "✦", name: "IndexedDB" },
+];
+
+const rows = [
+  {
+    label: "Clientes de referencia",
+    items: trustedClients.map((name) => ({ glyph: "●", name })),
+    duration: "38s",
+    direction: "normal",
+  },
+  {
+    label: "Stack tecnológico",
+    items: stack,
+    duration: "46s",
+    direction: "reverse",
+  },
+];
 ---
 
-<section
-  data-motion-section
-  class="relative z-20 border-y border-white/8 bg-[#0b0d1a] py-4 text-white"
->
-  <div class="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-20">
-    <p class="mb-3 text-center text-xs tracking-[0.12em] text-gray-400 uppercase">
-      Confian en Empulse
-    </p>
+<section class="relative z-20 overflow-hidden border-y hairline bg-ink py-8 text-bone md:py-10">
+  <div class="gutter mb-6 flex items-center justify-between meta text-white/50">
+    <span><span class="text-accent">◆</span> Confían en Empulse</span>
+    <span class="hidden sm:inline">(Clientes & Stack)</span>
+  </div>
 
-    <div class="hidden items-center justify-center md:flex">
-      <div class="desktop-track" aria-label="Clientes de referencia">
-        {trustedClients.map((client) => (
-          <span class="client-chip">{client}</span>
+  <div class="flex flex-col gap-3 md:gap-4">
+    {rows.map((row) => (
+      <div
+        class="marquee marquee--pausable"
+        style={`--marquee-duration:${row.duration};--marquee-direction:${row.direction};`}
+        aria-label={row.label}
+        role="group"
+      >
+        {[0, 1].map((copy) => (
+          <ul class="marquee__track" aria-hidden={copy === 1 ? "true" : undefined}>
+            {[...row.items, ...row.items].map((item) => (
+              <li class="flex items-center whitespace-nowrap pr-8 text-[clamp(1.5rem,3.4vw,3rem)] font-extrabold tracking-[-0.03em] md:pr-12">
+                <span class="mr-8 text-[0.55em] text-accent md:mr-12" aria-hidden="true">{item.glyph}</span>
+                {item.name}
+              </li>
+            ))}
+          </ul>
         ))}
       </div>
-    </div>
-
-    <div class="mobile-marquee md:hidden" aria-label="Clientes de referencia">
-      <div class="mobile-track">
-        {trustedClients.map((client) => (
-          <span class="mobile-chip">{client}</span>
-        ))}
-        {trustedClients.map((client) => (
-          <span class="mobile-chip" aria-hidden="true">{client}</span>
-        ))}
-      </div>
-    </div>
+    ))}
   </div>
 </section>
-
-<style>
-  .desktop-track {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 2.75rem;
-  }
-
-  .client-chip,
-  .mobile-chip {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.8);
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-  }
-
-  .client-chip {
-    font-size: 1rem;
-  }
-
-  .mobile-marquee {
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    border: none;
-    padding: 0.25rem 0;
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 12%,
-      black 88%,
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 12%,
-      black 88%,
-      transparent 100%
-    );
-  }
-
-  .mobile-track {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-    width: max-content;
-    animation: trusted-scroll 16s linear infinite;
-    will-change: transform;
-  }
-
-  .mobile-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    position: relative;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.75);
-  }
-
-  .mobile-chip::after {
-    content: "";
-    width: 4px;
-    height: 4px;
-    margin-left: 1.6rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.22);
-    flex: 0 0 auto;
-  }
-
-  @keyframes trusted-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(calc(-50% - 0.8rem)); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .mobile-track {
-      animation: none;
-    }
-  }
-</style>

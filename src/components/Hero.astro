@@ -1,88 +1,166 @@
 ---
 const whatsappUrl =
   "https://wa.me/543841453879?text=Hola,%20quiero%20una%20landing%20page%20que%20me%20ayude%20a%20captar%20m%C3%A1s%20clientes";
+
+const year = new Date().getFullYear();
+
+const meta = [
+  { label: "Agencia", value: "Empulse Digital" },
+  { label: "Foco", value: "Web & Software" },
+  { label: "Ubicación", value: "Argentina · Remoto" },
+  { label: "Servicios", value: "Landing · Sistemas · Automatización", desktopOnly: true },
+  { label: "Stack", value: "Astro · React · Next.js", desktopOnly: true },
+  { label: "Estado", value: `Disponible ${year}` },
+];
+
+const wordmark = "EMPULSE".split("");
+const slats = Array.from({ length: 8 });
 ---
 
 <section
   id="home"
-  data-motion-section
-  class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white hero-full"
+  class="hero grain relative flex min-h-[100svh] flex-col overflow-hidden bg-ink text-bone"
 >
-  <div class="pointer-events-none absolute inset-0">
-    <div class="absolute inset-0 hero-dot-bg opacity-35"></div>
-    <img
-      src="/logo.svg"
-      alt="Empulse"
-      width="620"
-      height="620"
-      class="absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 opacity-[0.08] sm:h-[620px] sm:w-[620px]"
-      loading="eager"
-      decoding="async"
-    />
-    <div class="absolute -top-28 left-0 h-80 w-80 rounded-full bg-pink-500/25 blur-3xl"></div>
-    <div class="absolute right-0 top-36 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
-    <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-amber-300/15 blur-3xl"></div>
+  <!-- Atmosphere: brand glow, dot field and oversized logo mark -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div data-hero-bg class="absolute inset-0">
+      <div class="hero-glow absolute -right-[20%] -top-[30%] h-[80vh] w-[80vh] rounded-full"></div>
+      <div class="hero-glow hero-glow--soft absolute -bottom-[35%] -left-[15%] h-[70vh] w-[70vh] rounded-full"></div>
+      <div class="hero-dots absolute inset-0"></div>
+      <img
+        src="/logo.svg"
+        alt=""
+        width="720"
+        height="720"
+        class="absolute right-[-12vw] top-1/2 h-[min(88vw,760px)] w-[min(88vw,760px)] -translate-y-1/2 opacity-[0.07]"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <!-- Load-in slats: ink columns that retract to reveal the background -->
+    <div class="absolute inset-0 z-[2] flex" data-hero-slats>
+      {slats.map(() => <span class="hero-slat h-full flex-1 bg-ink"></span>)}
+    </div>
   </div>
 
-  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
-  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
-
-  <div class="container relative z-10 mx-auto px-4 pb-20 pt-44 sm:px-6 sm:pt-48 lg:px-20 lg:pt-52">
-    <div class="mx-auto max-w-4xl text-center">
-      <p class="mb-5 inline-flex rounded-full border border-pink-400/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-200">
-        Soluciones IT a medida para negocios que quieren escalar
-      </p>
-
-      <h1 class="font-sora text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
-        Tu negocio necesita una web que
-        <span class="block text-pink-500">convierta visitas en clientes</span>
-      </h1>
-
-      <p class="mx-auto mt-6 max-w-2xl font-jakarta text-base leading-relaxed text-gray-300 sm:text-xl">
-        Diseñamos landing pages, sistemas y automatizaciones con enfoque comercial real:
-        claridad, velocidad y conversion.
-      </p>
-
-      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-7 py-3 font-jakarta font-semibold text-white transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+  <div class="relative z-10 flex flex-1 flex-col pt-20 md:pt-24">
+    <!-- Meta grid -->
+    <dl class="gutter grid grid-cols-1 gap-x-10 md:grid-cols-2">
+      {meta.map((item) => (
+        <div
+          class:list={[
+            "meta-cell relative items-center justify-between gap-4 py-2.5 meta",
+            item.desktopOnly ? "hidden md:flex" : "flex",
+          ]}
         >
-          Quiero una landing que venda
-          <span>↗</span>
-        </a>
-        <a
-          href="#proyectos"
-          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3 font-jakarta font-semibold text-white transition-colors duration-200 hover:bg-white hover:text-black"
+          <span data-meta-line class="absolute inset-x-0 top-0 h-px bg-white/15" aria-hidden="true"></span>
+          <dt data-intro class="text-white/50">{item.label}</dt>
+          <dd data-intro class="text-right text-white/85">{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <!-- Headline -->
+    <div class="gutter mt-auto grid gap-6 pb-6 pt-8 md:gap-8 md:pt-12 lg:grid-cols-12 lg:items-end lg:pt-16">
+      <div class="lg:col-span-8">
+        <h1
+          data-intro
+          class="max-w-4xl text-[clamp(2.1rem,5.2vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.035em]"
         >
-          Ver proyectos
-        </a>
+          Tu negocio necesita una web que
+          <span class="text-accent">convierta visitas en clientes</span>
+        </h1>
       </div>
+      <div class="lg:col-span-4">
+        <p data-intro class="max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
+          Diseñamos landing pages, sistemas y automatizaciones con enfoque comercial real:
+          claridad, velocidad y conversión.
+        </p>
+        <div data-intro class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-pill btn-accent"
+            data-magnetic
+          >
+            Quiero una landing que venda <span class="arrow-nudge" aria-hidden="true">↗</span>
+          </a>
+          <a href="#proyectos" class="link-u link-u--static font-semibold text-bone">
+            Ver proyectos <span class="arrow-nudge" aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Caption + giant wordmark -->
+    <div class="gutter">
+      <div class="flex items-end justify-between gap-6 border-t border-white/15 pt-3">
+        <p data-intro class="meta leading-relaxed text-white/60">
+          <span class="text-accent">01</span> / Estudio digital<br />
+          Software & Web<br />
+          Hecho en Argentina
+        </p>
+        <p data-intro class="meta hidden text-right text-white/60 sm:block">
+          (Scroll)<br />
+          <span class="text-bone">↓</span>
+        </p>
+      </div>
+      <p
+        class="hero-wordmark display-tight -mb-[0.06em] select-none whitespace-nowrap text-bone"
+        aria-hidden="true"
+      >
+        {wordmark.map((letter) => (
+          <span class="inline-block overflow-hidden align-bottom">
+            <span data-hero-letter class="inline-block">{letter}</span>
+          </span>
+        ))}
+      </p>
     </div>
   </div>
 </section>
 
-<script>
-  import "../scripts/gsapHeroIntro";
-</script>
-
 <style>
-  /*
-   * El marquee mide ~68px de alto (py-4 = 32px + texto ~36px).
-   * El hero ocupa el resto del viewport: 100svh - 68px.
-   * Así el marquee queda completamente visible sin scroll.
-   * Fallback 100vh para browsers sin soporte svh.
-   */
-  .hero-full {
-    min-height: calc(100vh - 68px);
-    min-height: calc(100svh - 68px);
+  .hero-wordmark {
+    font-size: clamp(3.9rem, 18.4vw, 24rem);
+    line-height: 0.8;
+    padding-top: 0.04em;
   }
 
-  .hero-dot-bg {
-    background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0 1px, transparent 1.3px);
-    background-size: 26px 26px;
-    mask-image: radial-gradient(circle at center, black 12%, transparent 68%);
+  .hero-glow {
+    background: radial-gradient(circle, rgb(236 72 153 / 0.35) 0%, rgb(236 72 153 / 0) 65%);
+  }
+
+  .hero-glow--soft {
+    background: radial-gradient(circle, rgb(255 16 145 / 0.16) 0%, rgb(255 16 145 / 0) 65%);
+  }
+
+  .hero-dots {
+    background-image: radial-gradient(circle at center, rgb(255 255 255 / 0.22) 0 1px, transparent 1.3px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at 70% 40%, black 10%, transparent 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 70% 40%, black 10%, transparent 70%);
+  }
+
+  .hero-slat {
+    transform-origin: top;
+    transform: scaleY(0);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js:not(.motion-failsafe)) .hero-slat {
+      transform: scaleY(1);
+    }
+    :global(html.js:not(.motion-failsafe)) [data-hero-letter] {
+      transform: translateY(105%);
+    }
+    :global(html.js:not(.motion-failsafe)) [data-meta-line] {
+      transform: scaleX(0);
+    }
+  }
+
+  [data-meta-line] {
+    transform-origin: left;
   }
 </style>

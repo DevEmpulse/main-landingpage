@@ -7,7 +7,26 @@ const whatsappUrl = 'https://wa.me/543841453879?text=Hola,%20me%20gustaría%20ob
   target="_blank"
   rel="noopener noreferrer"
   aria-label="Contactar por WhatsApp"
-  class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50"
+  class="whatsapp-fab fixed bottom-5 right-5 z-50 rounded-full bg-green-500 p-4 text-white shadow-lg shadow-black/40 sm:bottom-6 sm:right-6"
 >
   <img src="/whatsapp-icon.svg" alt="" aria-hidden="true" class="h-6 w-6" loading="eager" decoding="async" />
 </a>
+
+<style>
+  .whatsapp-fab {
+    transition:
+      transform 200ms var(--ease-out-strong),
+      background-color 200ms ease;
+  }
+
+  .whatsapp-fab:active {
+    transform: scale(0.95);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .whatsapp-fab:hover {
+      transform: scale(1.06);
+      background-color: #16a34a;
+    }
+  }
+</style>

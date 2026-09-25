@@ -51,6 +51,22 @@ const { title = 'Empulse - Desarrollo de Software y Páginas Web Profesionales e
     <!-- Preload recursos críticos -->  
     <link rel="preload" href="/logo.svg" as="image" />
 
+    <!-- Fonts: display grotesk, mono meta labels, brand body font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+
+    <!-- Flag JS availability for motion guards; failsafe reveals content if scripts never run -->
+    <script is:inline>
+      document.documentElement.classList.add("js");
+      window.setTimeout(function () {
+        document.documentElement.classList.add("motion-failsafe");
+      }, 4000);
+    </script>
+
     <!-- Datos estructurados mejorados -->
     <script type="application/ld+json">
       {JSON.stringify({
@@ -145,7 +161,7 @@ const { title = 'Empulse - Desarrollo de Software y Páginas Web Profesionales e
               { "@type": "ListItem", "position": 1, "name": "Inicio", "item": url },
               { "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${url}#servicios` },
               { "@type": "ListItem", "position": 3, "name": "Proyectos", "item": `${url}#proyectos` },
-              { "@type": "ListItem", "position": 4, "name": "Contacto", "item": `${url}#contacto` }
+              { "@type": "ListItem", "position": 4, "name": "Contacto", "item": `${url}/contacto` }
             ]
           },
           {
@@ -192,12 +208,22 @@ const { title = 'Empulse - Desarrollo de Software y Páginas Web Profesionales e
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json" />  
   </head>  
-  <body class="bg-white text-gray-900">  
-    <Header />  
-    <main class="min-h-screen">  
-      <slot />  
-    </main>  
-    <Footer />  
-    <WhatsAppButton />  
-  </body> 
+  <body class="bg-ink text-bone antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-white"
+    >
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="main" class="min-h-screen">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+
+    <script>
+      import "../scripts/motion";
+    </script>
+  </body>
 </html>

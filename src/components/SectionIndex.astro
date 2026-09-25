@@ -1,0 +1,28 @@
+---
+/**
+ * Editorial index row shown at the top of every section:
+ * "◆ (01)" · "(Label)" · "© YEAR"
+ */
+interface Props {
+  num: string;
+  label: string;
+  class?: string;
+}
+
+const { num, label, class: className = "" } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<div
+  data-index-row
+  class:list={["section-index relative grid grid-cols-3 items-center py-3 text-white/60 meta", className]}
+>
+  <span data-index-line class="index-line absolute inset-x-0 top-0 h-px bg-line" aria-hidden="true"></span>
+  <span class="flex items-center gap-2 justify-self-start">
+    <span class="text-accent" aria-hidden="true">◆</span>
+    <span>({num})</span>
+  </span>
+  <span class="justify-self-center text-bone">({label})</span>
+  <span class="justify-self-end">© {year}</span>
+  <span data-index-line class="index-line absolute inset-x-0 bottom-0 h-px bg-line" aria-hidden="true"></span>
+</div>

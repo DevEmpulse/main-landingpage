@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Contact from "../components/Contact.astro";
+
+const seo = {
+  title: "Contacto - Empulse | Desarrollo de Software y Páginas Web en Argentina",
+  description:
+    "Contactá a Empulse por WhatsApp o email para desarrollo de software a medida, páginas web profesionales y automatización de procesos. Respuesta en menos de 24 horas.",
+  url: "https://empulse.site",
+};
+
+const email = "empulse.dev@gmail.com";
+const whatsappUrl =
+  "https://wa.me/543841453879?text=Hola,%20me%20interesa%20conocer%20mas%20sobre%20sus%20servicios";
+
+const columns = [
+  { label: "[ Ubicación ]", lines: ["Argentina", "Remoto · Toda Latinoamérica"] },
+  { label: "[ Info ]", lines: ["Lun - Vie: 9:00 - 18:00", "Sáb y Dom: 9:00 - 14:00"] },
+];
+
+const words = ["Hablemos", "Trabajemos juntos"];
+---
+
+<Layout title={seo.title} description={seo.description} url={seo.url}>
+  <section
+    class="contact-hero grain relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-ink pt-20 text-bone md:pt-24"
+    aria-labelledby="contact-hero-title"
+  >
+    <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+      <div class="contact-glow absolute -left-[10%] top-[20%] h-[70vh] w-[70vh] rounded-full"></div>
+    </div>
+
+    <div class="gutter relative z-10">
+      <h1 id="contact-hero-title" class="sr-only">Contacto Empulse</h1>
+      <div class="grid grid-cols-2 gap-x-6 gap-y-8 border-t hairline pt-5 lg:grid-cols-4">
+        {columns.map((column) => (
+          <div data-intro>
+            <p class="meta mb-3 text-white/50">{column.label}</p>
+            {column.lines.map((line) => (
+              <p class="text-sm text-bone sm:text-base">{line}</p>
+            ))}
+          </div>
+        ))}
+        <div data-intro class="col-span-2 sm:col-span-1">
+          <p class="meta mb-3 text-white/50">[ Escribinos ]</p>
+          <a href={`mailto:${email}`} class="link-u w-fit text-sm text-bone sm:text-base">{email}</a>
+          <br />
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="link-u mt-1 text-sm text-accent sm:text-base">
+            +54 3841 453879 <span class="arrow-nudge" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div data-intro>
+          <p class="meta mb-3 text-white/50">[ GMT-3 ]</p>
+          <p class="display-tight tabular text-[clamp(1.75rem,3vw,2.75rem)] leading-none text-bone" data-clock data-clock-seconds>
+            --:--:--
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-10 pb-10 md:pb-14">
+      <div class="marquee contact-marquee" style="--marquee-duration:26s;">
+        {[0, 1].map((copy) => (
+          <p class="marquee__track" aria-hidden={copy === 1 ? "true" : undefined}>
+            {[...words, ...words].map((word, index) => (
+              <span
+                class:list={[
+                  "display-tight flex items-center whitespace-nowrap pr-[0.3em] text-[clamp(5rem,20vw,19rem)] leading-[0.85]",
+                  index % 2 === 1 ? "text-accent" : "text-bone",
+                ]}
+              >
+                {word}
+                <span class="ml-[0.3em] text-[0.3em] text-white/60" aria-hidden="true">✦</span>
+              </span>
+            ))}
+          </p>
+        ))}
+      </div>
+
+      <div class="gutter mt-8 flex flex-wrap items-center justify-between gap-4">
+        <p class="meta text-white/55">(Respuesta en menos de 24 horas)</p>
+        <a href="#contacto" class="link-u link-u--static font-semibold text-bone">
+          Ir al formulario <span class="arrow-nudge" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Contact indexNum="01" pageUrl="https://empulse.site/contacto" />
+</Layout>
+
+<style>
+  .contact-glow {
+    background: radial-gradient(circle, rgb(236 72 153 / 0.22) 0%, rgb(236 72 153 / 0) 65%);
+  }
+</style>

@@ -1,28 +1,30 @@
 ---
+import SectionIndex from "./SectionIndex.astro";
+
 const services = [
   {
     title: "Landing Pages de Alta Conversión",
     description:
       "Estructura orientada a ventas, copy estratégico y llamadas a la acción claras para transformar visitas en consultas.",
-    features: ["Propuesta de valor clara", "CTA multiples", "SEO técnico base"],
+    features: ["Propuesta de valor clara", "CTA múltiples", "SEO técnico base"],
   },
   {
     title: "Software a Medida",
     description:
       "Sistemas internos y plataformas web pensadas para tu flujo real de trabajo, sin procesos forzados.",
-    features: ["Arquitectura escalable", "Integraciones", "Paneles de gestion"],
+    features: ["Arquitectura escalable", "Integraciones", "Paneles de gestión"],
   },
   {
-    title: "Automatizacion de Procesos",
+    title: "Automatización de Procesos",
     description:
       "Reducimos tareas repetitivas y errores operativos para que tu equipo dedique tiempo a crecimiento y ventas.",
     features: ["Ahorro de tiempo", "Menos errores", "Más trazabilidad"],
   },
   {
-    title: "Soporte y Evolucion",
+    title: "Soporte y Evolución",
     description:
       "No solo lanzamos: acompanamos mejoras continuas, monitoreo y soporte para sostener resultados.",
-    features: ["Ajustes iterativos", "Soporte tecnico", "Roadmap de mejora"],
+    features: ["Ajustes iterativos", "Soporte técnico", "Roadmap de mejora"],
   },
 ];
 ---
@@ -53,36 +55,109 @@ const services = [
   })}
 </script>
 
-<section data-motion-section id="servicios" class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 py-20 text-white">
-  <div class="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-rose-500/30 via-teal-400/30 to-amber-300/30"></div>
-  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-amber-300/30 via-teal-400/30 to-rose-500/30"></div>
-
-  <div class="container relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
-    <div class="mb-14 max-w-3xl">
-      <p class="mb-3 font-jakarta text-xs uppercase tracking-[0.18em] text-pink-300">Servicios</p>
-      <h2 class="font-sora text-4xl font-semibold leading-tight sm:text-5xl">
-        Diseño y desarrollo con foco en resultado
-      </h2>
-      <p class="mt-5 font-jakarta text-lg text-gray-300">
-        No vendemos plantillas: armamos la solucion exacta para tu negocio, con UX clara, velocidad y conversion.
-      </p>
+<section id="servicios" class="services relative bg-black text-bone">
+  <div data-services-pin class="services-pin relative flex flex-col overflow-hidden py-20 md:py-28 lg:min-h-[100svh] lg:py-0">
+    <div class="gutter lg:pt-24">
+      <SectionIndex num="03" label="Servicios" />
     </div>
 
-    <div class="grid gap-4 md:grid-cols-2">
-      {services.map((service) => (
-        <article class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors duration-200 hover:border-pink-500/40">
-          <h3 class="font-sora text-2xl font-semibold text-white">{service.title}</h3>
-          <p class="mt-3 font-jakarta text-gray-300">{service.description}</p>
-          <ul class="mt-4 space-y-2 font-jakarta text-sm text-gray-200">
-            {service.features.map((feature) => (
-              <li class="flex items-center gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-pink-400"></span>
-                {feature}
-              </li>
-            ))}
-          </ul>
+    <div data-services-track class="services-track gutter mt-12 flex flex-col gap-4 lg:mt-0 lg:flex-1 lg:items-stretch">
+      <!-- Intro panel -->
+      <div class="services-panel services-panel--intro flex flex-col justify-end pb-6 lg:pb-16">
+        <p class="meta mb-5 text-white/50">(Qué hacemos)</p>
+        <h2 class="text-[clamp(2.25rem,4.4vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.035em]">
+          Diseño y desarrollo con foco en <span class="text-accent">resultado</span>
+        </h2>
+        <p class="mt-6 max-w-md text-base leading-relaxed text-white/65 sm:text-lg">
+          No vendemos plantillas: armamos la solución exacta para tu negocio, con UX clara, velocidad y conversión.
+        </p>
+        <p class="meta mt-10 hidden text-white/45 lg:block">
+          Desplazate <span class="text-accent">→</span>
+        </p>
+      </div>
+
+      {services.map((service, index) => (
+        <article class="services-panel relative flex flex-col border-t border-white/15 pt-8 lg:border-l lg:border-t-0 lg:pb-16 lg:pl-10">
+          <span
+            class="display-tight block text-[clamp(6rem,15vw,13rem)] leading-[0.8] text-bone"
+            aria-hidden="true"
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div class="mt-8 lg:mt-auto">
+            <h3 class="text-2xl font-extrabold leading-tight tracking-[-0.02em] md:text-3xl">
+              {service.title}
+            </h3>
+            <p class="meta mt-3 text-accent">{service.features.join(" / ")}</p>
+            <p class="mt-5 max-w-md text-base leading-relaxed text-white/65">{service.description}</p>
+          </div>
         </article>
       ))}
     </div>
   </div>
+
+  <!-- Diagonal edge into the next section -->
+  <div class="services-edge pointer-events-none relative h-[10vw] max-h-40 min-h-12" aria-hidden="true">
+    <div class="absolute inset-0 bg-black"></div>
+    <div class="services-edge__line absolute inset-x-0 bottom-0 h-full"></div>
+  </div>
 </section>
+
+<style>
+  .services-edge > div:first-child {
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+
+  .services-edge__line {
+    background: linear-gradient(
+      to bottom right,
+      transparent calc(50% - 1px),
+      var(--color-accent) 50%,
+      transparent calc(50% + 1px)
+    );
+    opacity: 0.7;
+  }
+
+  /* Desktop fallback (no JS or reduced motion): static 2-column grid. */
+  @media (min-width: 1024px) {
+    .services-track {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem 2.5rem;
+      padding-top: 3rem;
+      padding-bottom: 5rem;
+    }
+
+    .services-panel {
+      padding-top: 2rem;
+    }
+
+    .services-panel--intro {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* Desktop with motion: horizontal row driven by the pinned scroll. */
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    :global(html.js) .services-track {
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+      gap: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      will-change: transform;
+    }
+
+    :global(html.js) .services-panel {
+      flex: 0 0 auto;
+      width: min(40vw, 560px);
+      padding-top: 6rem;
+    }
+
+    :global(html.js) .services-panel--intro {
+      width: min(34vw, 480px);
+      margin-right: 3rem;
+    }
+  }
+</style>

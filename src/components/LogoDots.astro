@@ -145,7 +145,7 @@
     }
   }
 
-  function animate() {
+  let animate = function () {
     animationProgress += 0.01; // Velocidad de la animación
     if (animationProgress >= 1) {
       animationProgress = 1;
@@ -154,7 +154,7 @@
       animationId = requestAnimationFrame(animate);
     }
     renderDots();
-  }
+  };
 
   async function run() {
     resize();
@@ -168,8 +168,44 @@
     animate();
   }
 
-  addEventListener("resize", run, { passive: true });
-  setTimeout(run, 0);
+  // Reduced motion: draw the full mark at once instead of growing it.
+  const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (REDUCED_MOTION) {
+    animate = function () {
+      animationProgress = 1;
+      renderDots();
+    };
+  }
+
+  // Only re-run when the width changes (mobile URL bar resizes change height only).
+  let lastWidth = 0;
+  let resizeTimer = null;
+  addEventListener(
+    "resize",
+    () => {
+      const width = canvas.getBoundingClientRect().width;
+      if (Math.abs(width - lastWidth) < 2) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        lastWidth = width;
+        run();
+      }, 200);
+    },
+    { passive: true },
+  );
+
+  // Start drawing when the canvas scrolls into view.
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        lastWidth = canvas.getBoundingClientRect().width;
+        run();
+      }
+    },
+    { rootMargin: "0px 0px -15% 0px" },
+  );
+  observer.observe(canvas);
 </script>
 
 <style>

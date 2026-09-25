@@ -1,0 +1,30 @@
+---
+/**
+ * Giant repeating statement + contact pill, placed before the footer.
+ */
+const phrases = ["Webs que convierten", "Software a medida", "Automatización"];
+---
+
+<section class="relative overflow-hidden border-t hairline bg-ink py-16 text-bone md:py-24" aria-label="Llamado a la acción">
+  <div class="marquee" style="--marquee-duration:34s;">
+    {[0, 1].map((copy) => (
+      <p class="marquee__track" aria-hidden={copy === 1 ? "true" : undefined}>
+        {[...phrases, ...phrases].map((phrase) => (
+          <span class="display-tight flex items-center whitespace-nowrap pr-[0.35em] pt-[0.14em] text-[clamp(4rem,13vw,12rem)] leading-[0.9]">
+            {phrase}
+            <span class="ml-[0.35em] text-[0.4em] text-accent" aria-hidden="true">✦</span>
+          </span>
+        ))}
+      </p>
+    ))}
+  </div>
+
+  <div class="gutter mt-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center md:mt-14">
+    <p class="meta max-w-xs text-white/55">
+      (Tu próximo proyecto) — Respuesta en menos de 24 horas
+    </p>
+    <a href="/contacto" class="btn-pill btn-ghost text-lg" data-magnetic>
+      Contactanos <span class="arrow-nudge" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</section>
